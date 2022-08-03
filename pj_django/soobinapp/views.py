@@ -291,18 +291,15 @@ col = db["CampInfo"]
 docs = col.find()
 a = []
 camps = []
-i = 0
 for x in docs:
     #a.append(x.get('_id'))
     a.append(x)
     soup = BeautifulSoup(x['이미지'])
     imgs = soup.find_all("img")
     for y in imgs:
-        camp = {"name":x["캠핑장이름"],"addr": x["지역이름"], "img":y["src"]}
+        name = x["캠핑장이름"][x["캠핑장이름"].find("]")+1:]
+        camp = {"name":name,"addr": x["지역이름"], "img":y["src"]}
         camps.append(camp)
-    i += 1
-    if i == 6:
-        break
 
 
 def test9(request):
@@ -313,4 +310,40 @@ def test9(request):
     }
     return HttpResponse(template.render(context, request))
 
+
+def paging(request):
+    template = loader.get_template("paging.html")
+    context = {
+        'camps':camps
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def signup(request):
+    template = loader.get_template("signup.html")
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+
+from django.contrib import auth
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+
+# Create your views here.
+# 회원가입
+def signup(request):
+    if request.method == 'POST':
+        if request.POST['password1'] == if request.POST['password2'] :
+            user = User.objects.create_user(
+                                            username=request.POST['username'],
+                                            phonenumber=request.POST['phonenumber'],
+                                            email=request.POST['email'],
+                                            password=request.POST['password1'],
+                                            )
+            auth.login(request, user)
+            return redirect('/')
+        return render(request, 'signup.html')
+    return render(request, 'signup.html')
 

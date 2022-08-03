@@ -11,7 +11,7 @@
     <div id="header-full">
         <div class="gnb">
             <ul>
-                <li><a href="javascript:void(0)" class="login" onclick="isLogin()">로그인</a></li>
+                <li><a href="signup" class="login" onclick="isLogin()">로그인</a></li>
                 <li><a href="javascript:void(0)" class="join" onclick="isLogin('join')">회원가입</a></li>
                 <li><a href="./?c=cs/notice&amp;m=bbs&amp;bid=notice">공지사항</a></li>
                 <li><a href="./?c=cs/notice">고객센터</a></li>
@@ -131,10 +131,17 @@
                 <div class="head">
                     <div class="fl total_cnt countbox"><span id="total_cnt">{{ infolen }}</span>개</div>
                     <div class="fl page_ui">
-                        <a href="javascript:;" onclick="sido($('#cate1 option:selected').val()?$('#cate1 option:selected').val():'', $('#cate2 option:selected').val()?$('#cate2 option:selected').val():'', $('#cate3 option:selected').val()?$('#cate3 option:selected').val():'','prev')" class="fl btn_page prev_page"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                        <div class="fl pagestat"><span id="nowpage" class="b blue">1</span> / <span id="totalpage">432</span></div>
-                        <a href="javascript:;" onclick="sido($('#cate1 option:selected').val()?$('#cate1 option:selected').val():'', $('#cate2 option:selected').val()?$('#cate2 option:selected').val():'', $('#cate3 option:selected').val()?$('#cate3 option:selected').val():'','next')" class="fl btn_page next_page on"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        {% include "pagingtest.html" %}
                     </div>
+
+                    <!-- 페이징 속성 정의 -->
+                    <nav aria-label="Page navigation example">		
+                        <ul id="dyn_ul" class="pagination" style="justify-content: center;">
+                          <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>	    
+                          <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+                        </ul>
+                      </nav>
                     <div class="fl selectsido">
                         <select name="cate1" id="cate1" class="searchSelect" onchange="sido(this.options[this.selectedIndex].value,'','')">
                             <option value="" selected="">전국</option>
@@ -184,7 +191,7 @@
                 </div>
                 <!--head-->
                 <div class="camp_right_content">
-                    {% include "camps.html" %}<!--camp_right_content-->
+                    {% include "paging.html" %}<!--camp_right_content-->
             </div><!--kmapright-->
         </div><!--campinfo_wrap-->	
     </div>
