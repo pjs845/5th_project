@@ -314,7 +314,7 @@ def test9(request):
 def paging(request):
     template = loader.get_template("paging.html")
     context = {
-        'camps':camps
+        'camps': camps
     }
     return HttpResponse(template.render(context, request))
 
