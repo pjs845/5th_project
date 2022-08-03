@@ -32,4 +32,5 @@ urlpatterns = [
     path('template8/', views.test8, name='template8'),
     path('template9/', views.test9, name='template9'),
     path('paging/', views.paging, name='paging'),
+    path('template9/signup', views.signup, name='sugnup'),
 ]

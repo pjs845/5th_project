@@ -319,3 +319,15 @@ def paging(request):
     return HttpResponse(template.render(context, request))
 
 
+def signup(request):
+    template = loader.get_template("signup.html")
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+
+from django.contrib import auth
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+
