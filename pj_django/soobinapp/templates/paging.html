@@ -132,7 +132,6 @@
     		console.log("[pageInsert] : [start] : " + value); 
     		console.log("");
 
-
     		// [페이징 목록 초기화 실시]
     		$("#dyn_ul").empty();
 
@@ -198,14 +197,18 @@
     					page = i - pageMax; //생성된 페이지 초기값 저장 (초기 i값 4 탈출 인경우 >> 1값 저장)
     					break; //for 반복문 탈출
     				}
-    				var insertUl = "<li class='page-item'>"; // 변수 선언
-    				insertUl = insertUl + "<a class='page-link' href='javascript:void(0)' onclick = 'newPage("+i+");'>";
+                    if (i==startIndex){
+                        var insertUl = "<li class='page-item disabled'>"; // 변수 선언
+                    }else{
+                        var insertUl = "<li class='page-item'>"; // 변수 선언
+                    }
+    				insertUl = insertUl + "<a class='page-link' href='javascript:void(0)' onclick = 'select("+i+");'>";
 	    			insertUl = insertUl + String(i);
 	    			insertUl = insertUl + "</a></li>";
     				$("#dyn_ul").append(insertUl); //jquery append 사용해 동적으로 추가 실시  
     				count ++;
+                    
     			}
-
     			// 다음 페이지 추가 실시
     			var insertEND = "<li class='page-item'>"; // 변수 선언
     			insertEND = insertEND + "<a class='page-link' href='javascript:void(0)' onclick = 'newPage("+"0"+");'>";
@@ -220,14 +223,85 @@
 
 
     		// [새롭게 페이지 목록 리스트 처리 실시]
-    		newPage(startIndex);
+    		newPage(startIndex, pageCount);
+    	};
+
+        function select(current){
+    		// [페이징 목록 초기화 실시]
+    		$("#dyn_ul").empty();
+
+    		// [생성된 테이블 tr 개수 확인 >> 페이징 처리 5개씩 목록 자름]    		
+    		var currentpg = current; // 현재 페이지    		
+    		//var endIndex = $("#dyn_tbody tr").length; // tbody에 동적으로 추가된 tr 개수 확인
+    		var endIndex = tableList.length; // 배열에 있는 길이 확인
+
+    		// [tr 개수에 따라 페이징 해야할 개수 확인]
+    		var pageCount = 0;
+    		var pagePlus = 0;
+    		if(endIndex > pageList){ // tr 행 개수가 5 이상인 경우 (임의로 설정)
+    			pageCount = Math.floor(endIndex / pageList); //생성될 페이지 수 (소수점 버림)
+    			pagePlus = endIndex % pageList; //추가 나머지 자식 수
+    			if(pagePlus > 0){ //추가 자식수가 있는경우 >> 페이지 추가
+    				pageCount = pageCount + 1;
+    			}
+    		}
+
+    		// [동적 ul 페이징 처리 실시]
+            if(pageCount == 1){ //생성해야할 페이지가 1페이지인 경우
+    			var insertUl = "<li class='page-item'>"; // 변수 선언
+    			insertUl += insertUl + "<a class='page-link' href='javascript:void(0)' onclick = 'newPage(1);'>";
+    			insertUl += insertUl + i;
+    			insertUl += insertUl + "</a></li>";
+    			$("#dyn_ul").append(insertUl); //jquery append 사용해 동적으로 추가 실시      			
+    		}
+    		if(pageCount >= 2){ //생성해야할 페이지가 2페이지 이상인 경우
+    			// 이전 페이지 추가 실시 
+    			var insertSTR = "<li class='page-item'>"; // 변수 선언
+    			insertSTR = insertSTR + "<a class='page-link' href='javascript:void(0)' onclick = 'newPage("+"-1"+");'>";
+    			insertSTR = insertSTR + "Previous";
+    			insertSTR = insertSTR + "</a></li>";
+    			$("#dyn_ul").append(insertSTR); //jquery append 사용해 동적으로 추가 실시      			
+
+    			// 특정 1, 2, 3 .. 페이지 추가 실시
+    			var count = 1;
+    			for(var i=page; i<=pageCount; i++){
+    				if(count > pageMax){ //최대로 생성될 페이지 개수가 된 경우 
+    					page = i - pageMax; //생성된 페이지 초기값 저장 (초기 i값 4 탈출 인경우 >> 1값 저장)
+    					break; //for 반복문 탈출
+    				}
+                    if (i==currentpg){
+                        var insertUl = "<li class='page-item disabled'>"; // 변수 선언
+                    }else{
+                        var insertUl = "<li class='page-item'>"; // 변수 선언
+                    }
+    				insertUl = insertUl + "<a class='page-link' href='javascript:void(0)' onclick = 'select("+i+");'>";
+	    			insertUl = insertUl + String(i);
+	    			insertUl = insertUl + "</a></li>";
+    				$("#dyn_ul").append(insertUl); //jquery append 사용해 동적으로 추가 실시  
+    				count ++;
+                    
+    			}
+    			// 다음 페이지 추가 실시
+    			var insertEND = "<li class='page-item'>"; // 변수 선언
+    			insertEND = insertEND + "<a class='page-link' href='javascript:void(0)' onclick = 'newPage("+"0"+");'>";
+    			insertEND = insertEND + "Next";
+    			insertEND = insertEND + "</a></li>";
+    			$("#dyn_ul").append(insertEND); //jquery append 사용해 동적으로 추가 실시
+    		}
+
+
+    		// [페이징 완료 후 >> tr 개수 전체 삭제 >> 페이징 개수에 맞게 다시 표시 실시]
+    		$("#dyn_tbody").empty(); //tbody tr 전체 삭제 실시
+
+
+    		// [새롭게 페이지 목록 리스트 처리 실시]
+    		newPage(currentpg, pageCount);
     	};
 
 
 
-
     	/* [tbody tr 동적 삽입 이벤트 수행 함수] */    	
-    	function newPage(pageCurrent){
+    	function newPage(pageCurrent, pgcount){
     		// [pageCurrent [-1] >> 이전 / pageCurrent [1 이상] >> 일반 / pageCurrent [0] >> 다음]
     		console.log("");
     		console.log("[newPage] : [start]"); 
@@ -240,6 +314,7 @@
 
     			// [새롭게 페이징 처리 실시]
     			var newIdx = page - pageMax;
+                
 
     			// [테이블 데이터에 따라 페이징 처리 실시]
     			pageInsert(newIdx); //표시될 페이지 번호 전송
@@ -264,19 +339,21 @@
     			var checkCount = 1;
     			for(var i=idx; i<tableList.length; i++){ //반복문을 수행하면서 tbody에 tr데이터 삽입 실시
     				if(checkCount > pageList){ //한페이지에 표시될 목록을 초과한 경우
+                        $("#pg_wrap").empty();	
+                        var insertPg = "";
+                        insertPg += "<div class='page_nation'>";
+                        insertPg += "<a class='arrow prev' href='#'></a>";
+                        insertPg += "<div class='fl pagestat'><span id='nowpage' class='b blue'>"+pageCurrent+"</span> / <span id='totalpage'>"+pgcount+"</span></div>";
+                        insertPg += "<a class='arrow next' href='#''></a>";
+                        insertPg += "</div>";
+                        $("#pg_wrap").append(insertPg);	
     					return;
     				}
-
-
     				// json 데이터 파싱 실시
     				var jsonObject = JSON.parse(JSON.stringify(tableList[i])); //각 배열에 있는 jsonObject 참조
     				var name = jsonObject.name;
     				var addr = jsonObject.addr;
     				var img = jsonObject.img;
-
-                    //주소 자르기
-                    
-
 
     				// 동적으로 리스트 추가
     				var insertTr = ""; // 변수 선언
@@ -292,12 +369,11 @@
                     insertTr += "</div>";    
                     insertTr += "</div>";    
     				// jquery append 사용해 동적으로 추가 실시
-    				$("#dyn_tbody").append(insertTr);  
-
+    				$("#dyn_tbody").append(insertTr);
     				// 카운트 횟수 증가 		
     				checkCount ++;	
-    			}							
-    		}
+    			}					
+    		}	
     	};
     	
     </script>
@@ -321,8 +397,6 @@
 	<!-- 테이블 속성 정의 -->
         <div id="dyn_tbody" >
         </div>  
-
-
 </body>
 
 </html>
