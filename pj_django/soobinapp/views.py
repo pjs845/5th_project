@@ -274,10 +274,42 @@ def test8(request):
     return HttpResponse(template.render(context, request))
 
 
+
+#추가
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
+from pymongo import mongo_client
+from bs4 import BeautifulSoup
+
+
+
+url = "mongodb://192.168.0.66:27017"
+mgClient = mongo_client.MongoClient(url)
+db = mgClient["CampMain"]
+col = db["CampInfo"]
+docs = col.find()
+a = []
+camps = []
+i = 0
+for x in docs:
+    #a.append(x.get('_id'))
+    a.append(x)
+    soup = BeautifulSoup(x['이미지'])
+    imgs = soup.find_all("img")
+    for y in imgs:
+        camp = {"name":x["캠핑장이름"],"addr": x["지역이름"], "img":y["src"]}
+        camps.append(camp)
+    i += 1
+    if i == 6:
+        break
+
+
 def test9(request):
     template = loader.get_template("pj_main.html")
     context = {
-        
+        'infolen':len(a),
+        'camps':camps
     }
     return HttpResponse(template.render(context, request))
 
