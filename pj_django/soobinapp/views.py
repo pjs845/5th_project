@@ -291,24 +291,29 @@ col = db["CampInfo"]
 docs = col.find()
 a = []
 camps = []
-i = 0
 for x in docs:
     #a.append(x.get('_id'))
     a.append(x)
     soup = BeautifulSoup(x['이미지'])
     imgs = soup.find_all("img")
     for y in imgs:
-        camp = {"name":x["캠핑장이름"],"addr": x["지역이름"], "img":y["src"]}
+        name = x["캠핑장이름"][x["캠핑장이름"].find("]")+1:]
+        camp = {"name":name,"addr": x["지역이름"], "img":y["src"]}
         camps.append(camp)
-    i += 1
-    if i == 6:
-        break
 
 
 def test9(request):
     template = loader.get_template("pj_main.html")
     context = {
         'infolen':len(a),
+        'camps':camps
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def paging(request):
+    template = loader.get_template("paging.html")
+    context = {
         'camps':camps
     }
     return HttpResponse(template.render(context, request))
