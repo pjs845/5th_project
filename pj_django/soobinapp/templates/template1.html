@@ -1,0 +1,13 @@
+<p> 안녕 <span style="color:red">{{yourname}}</span>..잘 지내? </p> 
+
+{% with myname="수빈"%}
+<p>내 이름은 <font color="blue">{{myname}}</font> 이야</p>
+{% endwith %}
+
+<ul>
+    {% for address in addresses %}
+    <li>{{address.name}}</li>
+    {% endfor %}
+</ul>
+
+<a href="../">뒤로가기</a>

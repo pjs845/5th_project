@@ -1,0 +1,14 @@
+{% extends 'template6_parents.html'%}
+
+{% block subject %}
+    <h4>주소록</h4>
+{% endblock %}
+<br/>
+{% block content %}
+    {% for x in addresses %}    
+    <li>{{x.name}} | {{x.addr}} | {{x.rdate}}</li>
+    {% endfor %}
+{% endblock %}
+<br/>
+
+<a href="../">뒤로가기</a>

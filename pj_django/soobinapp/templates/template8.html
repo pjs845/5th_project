@@ -1,0 +1,25 @@
+{% with name="Water Melon"%}
+<p>안녕..{{name|upper}} !!</p>
+{%endwith%}
+
+{% with name="water melon"%}
+<p>안녕..{{name|first|upper}} !!</p>
+{%endwith%}
+
+{% with name="Water Melon"%}
+<p>안녕..{{name|first|lower}} !!</p>
+{%endwith%}
+
+{% filter upper %}
+<p>Good morning my friend</p>
+{% endfilter %}
+
+{% filter upper|linenumbers|lower %}What 
+makes
+you
+happy ?{% endfilter %}
+<br/>
+{% comment %} {%for y in a%}
+{{y.캠핑장이름}}{{y.장소}}
+<br/>
+{%endfor%} {% endcomment %}

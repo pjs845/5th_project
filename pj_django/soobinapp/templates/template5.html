@@ -1,0 +1,27 @@
+{% for address in addresses %}
+    <li style="background-color:{% cycle 'yellow' 'green' 'lightblue' 'red' 'blue' 'gray' 'lightgray' 'orange'%}">
+        {{address.name}}
+    </li>
+{% endfor %}
+<br/>
+
+{% for address in addresses %}
+{% cycle 'yellow' 'green' 'lightblue' 'red' 'blue' 'gray' 'lightgray' 'orange' as bgc silent%}
+    <li style="background-color:{{bgc}}">
+        {{address.name}}
+    </li>
+{% endfor %}
+<br/>
+
+{% for address in addresses %}
+{% cycle 'yellow' 'green' 'lightblue' 'red' 'blue' 'gray' 'lightgray' 'orange' as bgc silent%}
+{% if forloop.counter == 2 %}
+    {% resetcycle %}
+{%endif%}
+<li style="background-color:{{bgc}}">
+        {{address.name}}
+    </li>
+{% endfor %}
+<br/>
+
+<a href="../">뒤로가기</a>

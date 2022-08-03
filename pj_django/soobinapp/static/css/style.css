@@ -1,0 +1,158 @@
+#header-full {width:100%;position:fixed;z-index:13;background:rgba(209, 89, 59, 0.705);height:120px;-webkit-transition: background-color 700ms linear;-moz-transition: background-color 700ms linear;-o-transition: background-color 700ms linear;-ms-transition: background-color 700ms linear;transition: background-color 700ms linear;}
+#header-full .gnb {height:40px;position:absolute;z-index:0;right:20px;top:10px;width:100%;z-index:12}
+#header-full .gnb .copytext {position:absolute;height:40px;line-height:40px;color:#848590;font-weight:400;font-size:12px;width:340px;left:0px;padding-left:20px;font-size:12px;}
+#header-full .gnb ul {position:absolute;right:20px;top:5px;font-size:12px;padding:0;margin:0;list-style:none;}
+#header-full .gnb ul li {display:inline-block;position:relative;}
+#header-full .gnb ul li > a {color:#ccc;display:inline-block;margin:0 8px;height:40px;line-height:31px}
+#header-full .gnb ul li > a:hover {color:#25a5f0}
+body{margin:0}
+
+/* 회원가입 / 로그인  */
+.login{border: 2px solid #eee; border-radius: 14px; /*테두리 동글동글*/ padding: 0.1px 7px; font-size: 13px; font-weight: bold; text-decoration-line: none;}
+.login:hover{border: 2px solid #009aa5;color: #009aa5;}
+.join{border:2px solid #eee; border-radius: 14px; /*테두리 동글동글*/ padding: 0.1px 7px; font-size: 13px; font-weight: bold; text-decoration-line: none;}
+.join:hover{border: 2px solid #009aa5;color: #009aa5;}
+
+#header-full .header-wrap {width:1200px;position:absolute;left:50%;margin-left:-500px;top:20px}
+#header-full .logo {position:absolute;top:0;left:0;z-index:1}
+#header-full .logo h1 {padding:0;margin:0;}
+
+#header-full .topmenu {text-align:center;}
+#header-full .topmenu ul {list-style:none;padding:0;margin:15;display:inline-block}
+#header-full .topmenu ul li {display:inline-block;margin:0 13px;position:relative;}
+#header-full .topmenu ul li .top_ico {position:absolute;top:-7px;right:0}
+#header-full .topmenu ul li > a {font-size:18px;font-weight:600;color:#fff;display:inline-block;padding:0;height:54px;line-height:54px;margin:0;text-align:center;}
+#header-full .topmenu ul li > a:hover {color:#25a5f0}
+#header-full .topmenu ul li > a.active {color:#56c3f6;border-bottom:2px #56c3f6 solid}
+#header-full .topmenu ul li > a.active1 {color:#25a5f0;}
+
+#header-full .topmenu ul li > ul {display:none; visibility:hidden;position:absolute;top:50px;left:0;z-index:1;padding:16px 0;margin:0 0 0 -30px;border-radius:6px;background:#383943;}
+#header-full .topmenu ul li > ul li {padding:0;margin:0;}
+#header-full .topmenu ul li > ul li a {font-weight:500;font-size:14px;display:block;text-align:left;height:34px;line-height:34px;color:#ccc;padding:0 0 0 20px;width:120px;}
+#header-full .topmenu ul li:hover > ul {display:block; visibility:visible;}
+#header-full .topmenu ul li:hover > a{color:#25a5f0}
+#header-full.scrolled {background-color: #383943;}
+
+#header-full .category {text-align:center;padding:0;position:absolute;left:260px;top:35px}
+#header-full .category ul {display:inline-block;list-style:none;margin:0;padding:0}
+#header-full .category ul.tabs4 li {padding:0 10px;display:inline-block;height:40px;line-height:40px}
+#header-full .category ul.tabs4 li a {font-size:12px;font-weight:600;color:#333;padding:3px 2px;display:inline-block;height:40px;line-height:40px}
+#header-full .category ul.tabs4 li a:hover {color:#25a5f0}
+#header-full .category ul.tabs4 li a.selected {color:#25a5f0}
+#header-full .category ul.tabs4 li a span {font-weight:400;color:#999;display:inline-block}
+
+/* 1번째 미들*/
+#main_fullbg {padding:0;width:100%;height:100%;position:relative;background:#e7cd9c;min-height:900px;}
+#main_fullbg .main_fullbg-wrap {width:1200px;margin:0 auto;position:relative;height:100%}
+
+#main_fullbg .main-search {display:inline-block;width:800px;position:absolute;left:50%;margin-left:-400px;top:47%;z-index:11;margin-top:-240px;display:none;text-align:center}
+#main_fullbg .main-search h2 {font-size:2rem;color:#fff;font-weight:400;padding:0 0 20px 0;margin:0;text-align:center;padding-left:100px}
+#main_fullbg .main-search .btn_sido {display:inline-block;height:60px;border-radius:60px;overflow:hidden;box-shadow:10px 0px 40px rgba(0,0,0,.4);width:110px;font-size:1rem;line-height:60px;margin-right:10px;font-weight:700;background:#f1b23d;color:#fff}
+#main_fullbg .main-search .btn_sido:hover {background:#fff;color:#000}
+#main_fullbg .main-search .search-form {width:650px;background:#fff;height:60px;border-radius:30px;overflow:hidden;box-shadow:0px 0px 30px rgba(0,0,0,.4);position:relative;display:inline-block;text-align:left !important}
+#main_fullbg .main-search .search-form .search_input {width:400px;height:55px;border:none;background:transparent;font-size:1.4rem;font-family:'noto sans kr';color:#333;padding-left:50px;;line-height:56px;outline:0;letter-spacing:-0.03em}
+#main_fullbg .main-search .search-form button {border:none;background:none;font-size:30px;position:absolute;top:0;right:0;outline:0;cursor:pointer;background:#f0f0f0;color:#555;height:60px;width:80px;}
+#main_fullbg .main-search .search-form button:hover {background:#f1b23d;color:#fff}
+
+/* 검색 창 */
+fieldset {border:0 none;margin:0; padding:0;}
+
+/* 1번째 미들 색  */
+#main_fullbg .mainwrap {position:absolute;top:0;left:0;right:0;bottom:0;z-index:0}
+#main_fullbg .mainwrap:after{content:'';display: block;position: absolute;left: 0;right: 0;top: 0;bottom: 0;background: rgba(107, 89, 65, 0.45);z-index:-1}
+
+/* 2번째 미들*/
+#camping-map {width:1300px;margin:0 auto;}
+#camping-map.maininfo .head {display:inline-block;width:100%;margin-bottom:20px}
+#camping-map.maininfo .head .selectsido .vtext {font-size:14px;font-weight:500;color:#3EA9CD;display:inline-block;margin:0 0 0 11px}
+#camping-map.maininfo .head .selectsido .vtext > span {font-weight:700;color:#000}
+#camping-map.maininfo .head .selectsido .subselect {display:none}
+#camping-map.maininfo .head > ul li {padding:0 10px}
+#camping-map.maininfo .head .total_cnt {background:#25a5f0;color:#fff;height:36px;line-height:36px;font-size:.9rem;width:66px;text-align:center}
+#camping-map.maininfo .head .page_ui {border:1px #ccc solid;height:34px;line-height:34px;margin:0 10px;}
+#camping-map.maininfo .head .page_ui .btn_page {width:34px;height:34px;color:#ccc;text-align:center;font-size:15px;pointer-events: none;}
+#camping-map.maininfo .head .page_ui .btn_page.on {color:#555;background:#f0f0f0;pointer-events: auto;}
+#camping-map.maininfo .head .page_ui .btn_page.on:hover {background:#ccc;color:#fff}
+#camping-map.maininfo .head .page_ui .pagestat {padding:0;width:70px;text-align:center}
+#camping-map.maininfo .head .adq  {display:inline-block;padding:7px 0 0 0;font-weight:500;font-size:15px;color:#aa0a47;font-weight: bold;}
+#camping-map .adq:hover {border-color:#f52390}
+
+
+#camping-map.maininfo .campinfo_wrap:after {content:""; display:block;float:none;clear:both;}
+#camping-map.maininfo .campinfo_wrap .kmap {width:200px;border-right:2px #dba633 solid;height:0px;padding:60px 30px 0 0}
+#camping-map.maininfo .campinfo_wrap .kmap h2 {margin:10;padding:0;font-size:1.7rem;text-align:center;letter-spacing:-0.03em}
+#camping-map.maininfo .campinfo_wrap .kmap h2 span {color:#6419c5}
+#camping-map.maininfo .campinfo_wrap .kmap p.csub_head {margin:2px 0 60px;text-align:center;font-size:0.9rem}
+#camping-map.maininfo .campinfo_wrap .kmap #campMap area {outline:0}
+
+#camping-map.maininfo .campinfo_wrap .kmapright {width:950px;margin-left:380px;padding-top:0px}
+#camping-map.maininfo .campinfo_wrap .kmapright .camp_right_content:after {content:"";clear:both;display:block;float:none;}
+#camping-map.maininfo .campinfo_wrap .kmapright .items {width:290px;margin:7px 40px 30px 0;float:left;}
+#camping-map.maininfo .campinfo_wrap .kmapright .items.nomargin {margin-right:0}
+#camping-map.maininfo .campinfo_wrap .kmapright .items .photo {width:283px;height:168px;position:relative;overflow:hidden;background:#f6f6f6 no-repeat  center center;}
+#camping-map.maininfo .campinfo_wrap .kmapright .items .photo:after {content: '';display: block;width:100%;height:100%;position: absolute;left: 0;right: 0;top: 0;bottom: 0;z-index:0;background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.3) 100%);background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.3) 100%);background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.3) 100%);}
+#camping-map.maininfo .campinfo_wrap .kmapright .items img.tm {transition: transform .2s;width:100%;height:100%}
+#camping-map.maininfo .campinfo_wrap .kmapright .items:hover img.tm {transform: scale(1.15)};
+#camping-map.maininfo .campinfo_wrap .kmapright .items .photo .tm {object-fit:cover;width:283px;transition: transform .2s;}
+#camping-map.maininfo .campinfo_wrap .kmapright .items .photo span.distance {position:absolute;left:0;bottom:0;display:inline-block;background:#000;background:rgba(0,0,0,.1);padding:4px 5px;color:#efe03e;z-index:10;font-size:11px;}
+#camping-map.maininfo .campinfo_wrap .kmapright .items .photo span.cat {position:absolute;right:0;bottom:0;display:inline-block;background:#000;background:rgba(0,0,0,.1);padding:4px 5px;color:#efe03e;z-index:10;font-size:11px;}
+#camping-map.maininfo .campinfo_wrap .kmapright .items .cont {padding-top:7px}
+#camping-map.maininfo .campinfo_wrap .kmapright .items .cont .tt {padding:0;font-size:1rem;font-weight:500;margin:5px 0}
+#camping-map.maininfo .campinfo_wrap .kmapright .items .cont .mcont {color:#008ab8;font-size:12px;font-weight:400}
+
+
+
+/* footer */
+
+#footer-full {padding:50px 0;background:#d9dbe9}
+#footer-full .flogo {margin-right:40px}
+#footer-full .bottomMenu {margin:6px  0 15px 0}
+#footer-full .bottomMenu a {font-size:15px;}
+#footer-full .bottomMenu .vline {display:inline-block;margin:0 16px;color:#a7a9b3}
+#footer-full .copy {line-height:1.9;color:#48494f}
+
+.m-wrap:after {
+    display: block;
+    content: "";
+    clear: both;
+    float: none;
+}
+
+/*  */
+
+.fl {
+    float: left;
+}
+/* 2번째 미들 */
+.fr {
+    float: right;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+.searchSelect {
+    font-family: "noto sans kr";
+    outline: none;
+    min-width: 70px;
+    min-width: 70px\9;
+    height: 36px;
+    padding: 4px 40px 6px 15px;
+    padding: 8px 9px 3px 15px\9;
+    border: 1px solid #bbb;
+    font-size: 14px;
+    font-size: 12px\9;
+    line-height: 19px;
+    color: #444;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    background: url(./image/select_arrow.gif) right center no-repeat;
+    background: none\9;
+    background-color: #fff;
+    font-weight: 400;
+}
+
+
+

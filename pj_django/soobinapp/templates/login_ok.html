@@ -1,0 +1,22 @@
+<script language="javascript">
+    //alert({{result_num}})
+    if({{result_num}}==1){
+        alert("로그인 성공!");
+    }else if({{result_num}}==2){
+        alert("로그인 실패 1.(비밀번호 틀림)");
+    }else{
+        alert("로그인 실패 2.(다 틀렸어)");
+    }
+    {% comment %} switch({{result_num}}){
+        case 3:
+            alert("로그인 실패 2.(다 틀렸어)");
+            break;
+        case 2:
+            alert("로그인 실패 1.(비밀번호 틀림)");
+            break;
+        case 1:
+            alert("로그인 성공!");
+            
+    } {% endcomment %}
+    location.href="../../"
+</script>

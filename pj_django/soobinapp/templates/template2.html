@@ -1,0 +1,47 @@
+{% if x == 1 %}
+<p>one</p>
+{% elif x == 2 %}
+<p>two</p>
+{% else %}
+<p>other</p>
+{% endif %}
+
+{% if y %}
+<p>y는 empty가 아니다</p>
+{% else %}
+<p>y는 empty가 맞다</p>
+{% endif %}
+
+{% if x != 1 %}
+<p>1이 아니다</p>
+{% endif %}
+
+{% if x < 2 %}
+<p>2보다 작다</p>
+{% endif %}
+
+{% if x == 2 and y == 'tiger' %}
+<p>2 그리고, tiger 이다</p>
+{% endif %}
+
+{% if x == 2 or y == 'tiger' %}
+<p>2 또는 tiger 이다</p>
+{% endif %}
+
+{% comment %} {% if x == 2 and y =='tiger' or x == 3 %}
+<p> (2그리고tiger) 또는 (x는 3) </p>
+{% endif %} {% endcomment %}
+
+{% if 'orange' in fruits %}
+<p>yes orange</p>
+{% else %}
+<p>no orange</p>
+{% endif %}
+
+{% if x is z %}
+<p>x is z</p>
+{% else %}
+<p>x is not z</p>
+{% endif %}
+
+<a href="../">뒤로가기</a>

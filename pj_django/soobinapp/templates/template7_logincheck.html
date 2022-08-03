@@ -1,0 +1,9 @@
+<h4>현재 로그인 정보 : {{request.session.login_check}}</h4>
+{% if not request.session.login_check %}
+<script language="javascript">    
+alert("로그인 못하심")
+console.log("서비스 이용 불가(template7_logincheck.html)");
+{% comment %} location.href="../" {% endcomment %}
+//history.back();
+</script>
+{% endif %}
