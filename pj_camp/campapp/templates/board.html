@@ -6,6 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <title>캠핑구</title>
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
 </head>
 <body>
@@ -59,38 +63,30 @@
             </div>
         </div>
     </div>
+    <!-- 미들 -->
 
-    <!-- 중간 페이지 -->
-    {% comment %} <div class="middle-pannel1" style="height: 900px; background: url(&quot;/static/img/ww.jpg&quot;)center center / cover no-repeat">
-
-    </div> {% endcomment %}
-
-    <!-- 중간 페이지 -->
-
-    <section id="main">
-        <article>
-            <table class="table table-hover">
-                <thead>
-                    <center>
-                        <h1>
-                            COMMUNITY
-                        </h1>
-                    <font color='gray' size='4' face='hanna'>
-                    <hr width='1200' size='2' color='gray' noshade>
-                    <TABLE border='2' width='1100' height='45' align='center' noshade>
+    <table class="table table-hover">
+        <thead>
+            <center class="board-middle">
+                <h1>Community Board</h1>
+                <font color='gray' size='4' face='hanna'>
+            <hr width='1400' size='2' color='gray' noshade>
+                <TABLE border='2' width='1100' height='45' align='center' noshade>
                     <TR size='2' align='center' noshade bgcolor='AliceBlue'>
                         <th bgcolor='AliceBlue' width='30'>no</th>
                         <th color='gray' width='670'>subject</th>
-                        
                         <th color='gray' width='200'>camplace</th>
                         <th color='gray' width='100'>writer</th>
-                        </TR>
+                    </TR>
                     
-                        </TABLE>
-                        <hr width='1200' size='2' color='gray' noshade>
-        </article>
-    </section>
-    {% comment %} footer {% endcomment %}
+                </TABLE>
+                
+            </center>
+            
+        </thead>
+    </table>
+                
+    <!-- 미들 끝 -->
     <div id="footer-full">
         <div class="m-wrap">
             {% comment %} <div class="fl flogo"><a href="/" title="클릭시 메인으로 이동" class="footer_logo"><img src="/layouts/5g/image/logo_square_100.jpg" alt="오지캠핑 로고"></a></div> {% endcomment %}
@@ -102,7 +98,7 @@
                     <a href="./?c=cs/notice">고객센터</a> <span class="vline">|</span>
                                     <a href="javascript:void(0)" onclick="isLogin('join')">회원가입</a> <span class="vline">|</span>
                     <a href="javascript:void(0)" onclick="isLogin()">로그인</a>
-                                </div>
+                </div>
     
                 <div class="copyright">
                     <span class="copy">
@@ -111,10 +107,9 @@
                         
                         <span class="b"><i class="fa fa-phone"></i> 전화</span> 010-0000-0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <span class="b"><i class="fa fa-envelope-o" aria-hidden="true"></i> 이메일</span> <a href="mailto:blueb@blueb.co.kr">test@test.co.kr</a>
-                                        </span>
+                    </span>
                 </div>
             </div> 
         </div>
-    </div> 
-</body>
+    </div>
 </html>
