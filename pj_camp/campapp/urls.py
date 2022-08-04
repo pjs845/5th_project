@@ -7,4 +7,5 @@ urlpatterns = [
     path('signup/', views.signup, name='sugnup'),
     path('board/', views.board_page, name='board'),
     path('page2/', views.ad_page, name='page2'),
+    path('notice/', views.notice, name='notice'),
 ]
