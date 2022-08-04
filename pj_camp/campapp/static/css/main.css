@@ -1,0 +1,19 @@
+@import url('https://fonts.google.com/specimen/Karla');
+
+/* 헤더 */
+.navbar {opacity: 0.7; height:120px;} /* 메뉴바 */
+ .b {background-color: red;}
+/* .navbar-brand {top:0;left:0;z-index:1;padding:0;margin:0;} 로고 */
+.collapse {padding:30px;}
+
+
+/* 헤더 오른쪽 부분*/
+.header-left {height:40px;position:absolute;z-index:0;right:20px;top:10px;width:100%;z-index:12}
+.header-left .copytext {position:absolute;height:40px;line-height:40px;color:#848590;font-weight:400;font-size:12px;width:340px;left:0px;padding-left:20px;font-size:12px;}
+.header-left ul {position:absolute;right:20px;top:5px;font-size:12px;padding:0;margin:0;list-style:none;}
+.header-left ul li {display:inline-block;position:relative;}
+.header-left ul li > a {font-size: 12px;color:#ccc;display:inline-block;margin:0 8px;height:40px;line-height:31px;border: 2px solid #eee;border-radius: 14px;padding: 0.1px 7px;text-decoration-line: none;}
+.header-left ul li > a:hover {border: 2px solid #009aa5;color: #009aa5;}
+
+
+
