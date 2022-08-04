@@ -33,24 +33,24 @@
             // [ajax 통신 >> tableList 테이블 데이터가 리스트에 포함된 경우]
             // pageInsert(page);
             var location = []
-            
-            
-            //camp = {"name":name,"addr": x["지역이름"], "img":y["src"]}
-            //location.append(camp)
-            
+            for (const doc of {{col.find()}}){
+
+			}
             // [for 반복문을 돌려서 tr 데이터 임의로 생성 실시]
             for (const camp of location){
                 // JSON 형식으로 리스트에 추가 실시
                 var jsonObject = {"name":String(camp["name"]), "addr":String(camp["addr"]), "img":String(camp["img"])};
                 //var jsonObject = {"name":String(key)};
+				console.log(jsonObject);
                 tableList.push(jsonObject);
             }
 
 
             // [테이블 리스트에 저장된 데이터 확인]
-            console.log("");
-            console.log("[tableInsert] : [list] : " + JSON.stringify(tableList)); 
-            console.log("");
+            //console.log("");
+            //console.log("[tableInsert] : [list] : " + JSON.stringify(tableList)); 
+            //console.log("");
+			console.log("location" + location);
 
 
             // [테이블 행 개수에따라 페이징 처리 실시]
