@@ -1,3 +1,4 @@
+from types import MemberDescriptorType
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -28,7 +29,7 @@ for x in docs:
         name = x["캠핑장이름"][x["캠핑장이름"].find("]")+1:]
         camp = {"name":name,"addr": x["지역이름"], "img":y["src"]}
         camps.append(camp)
-    
+from .models import Member #회원정보   
 ########## 메인 페이지  ##########
 def main_page(request):
     template = loader.get_template("pj_main.html")
@@ -52,6 +53,19 @@ def signup(request):
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+########## signup_ok (조건) ##########
+def signup_ok(request):
+   if request.method == "POST":
+      if request.POST['password1'] == request.POST['password2'] :
+         a = request.POST['name']
+         b = request.POST['email']
+         c = request.POST['phone']
+         d = request.POST['password1']
+         nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S') 
+         member = Member(name = a, email = b, phone = c, password1 = d, rdate=nowDatetime, udate=nowDatetime)
+         member.save()
+         return HttpResponseRedirect(reverse('main'))
 
 ########## 서브 페이지 ##########
 def board_page(request): #게시판으로 가는 페이지 연동
