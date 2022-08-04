@@ -69,7 +69,7 @@ fieldset {border:0 none;margin:0; padding:0;}
 .middle-pannel2 {margin:0px;padding:0px;}
 
 /* 왼쪽 지도  */
-.pannel2-1 {width:27%; height:1050px; background-color:rgb(106, 106, 112);float:left;}
+.pannel2-1 {width:27%; height:750px; background-color:rgb(106, 106, 112);float:left;}
 .pannel2-1 .pannel2-1-1 h2{margin-top:150px;margin:40px;padding:0;font-size:1.7rem;text-align:center;letter-spacing:-0.03em}
 .pannel2-1 .pannel2-1-1 h2 span {color:#6419c5}
 .pannel2-1 .pannel2-1-2 {margin:30px;padding:0;font-size:1.4rem;text-align:center;letter-spacing:-0.03em}
@@ -77,10 +77,10 @@ fieldset {border:0 none;margin:0; padding:0;}
 
 /* 오른쪽 캠핑 정보 */
 
-.pannel2-2 {width:73%; height:1050px; background-color:rgb(247, 233, 233);float:left;}
+.pannel2-2 {width:73%; height:750px; background-color:rgb(247, 233, 233);float:left;}
 
 .pannel2-2 .pannel2-2-1 {width:82%;margin:auto;}
-.pannel2-2 .pannel2-2-1 .pannel2-2-2 {display:inline-block;width:82%;margin-bottom:20px;margin-top:25px;}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 {display:inline-block;width:82%;margin-bottom:20px;margin-top:45px;}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 > ul li {padding:0 10px}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-3 {background:#25a5f0;color:#fff;height:36px;line-height:36px;font-size:.9rem;width:66px;text-align:center}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 {border:1px #ccc solid;height:34px;line-height:34px;margin:0 10px;}
@@ -111,7 +111,7 @@ fieldset {border:0 none;margin:0; padding:0;}
 .pannel2-2 .pannel2-2-1 .items .cont .mcont {color:#1728c0;font-size:12px;font-weight:400}
 
 /* ####################### footer ##############################*/
-#footer-full {margin:10px;padding:30px 0;background:#df7c43; text-align:left;}
+#footer-full {margin:10px;padding:30px 0;background:#ffffff;}
 #footer-full .flogo {margin-right:40px}
 #footer-full .bottomMenu {margin:6px  0 15px 0}
 #footer-full .bottomMenu a {font-size:15px;}
@@ -131,6 +131,16 @@ a {text-decoration: none;color: #000;}
 
 
 /* 서브 페이지 */
-/* #dyn_ul{clear: left;} */
 
-
+/* 왼쪽 사이드 메뉴 */
+aside#left{float: left;width:200px; height:500px; float:left; margin-left:250px; margin-right:50px;}
+aside#left ul{ list-style: none}
+aside#left ul li{background-color: #3f3f3f;padding: 5px 10px;border-bottom: 1px solid gray;}
+aside#left ul li a{color: white;text-decoration:none;}
+aside#left ul li:hover{background-color: gray;}
+aside#main{float: left;}
+ 
+/* 가운데 본문 영역 */
+section#main{width:100%; height:800px; float:left; margin-bottom: 20px; margin-top: 200px;}
+section#main h1 {margin-bottom:50px; font-size:60px;}
+table {font-size:20px;}
