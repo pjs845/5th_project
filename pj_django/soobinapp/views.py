@@ -305,9 +305,7 @@ for x in docs:
 def test9(request):
     template = loader.get_template("pj_main.html")
     context = {
-        'infolen':len(a),
         'camps':camps,
-        'col': col,
     }
     return HttpResponse(template.render(context, request))
 
@@ -316,7 +314,6 @@ def paging(request):
     template = loader.get_template("paging.html")
     context = {
         'camps': camps,
-        'col': col,
     }
     return HttpResponse(template.render(context, request))
 
