@@ -13,7 +13,7 @@
 body {margin:0; background-color:#f8f6ef; font-family:'Poppins';}
 
 
-/* 회원가입 / 로그인  */
+/* 회원가입 / 로그인 */
 .login{border: 2px solid #eee; border-radius: 14px; /*테두리 동글동글*/ padding: 0.1px 7px; font-size: 13px; font-weight: bold; text-decoration-line: none;}
 .login:hover{border: 2px solid #009aa5;color: #009aa5;}
 .join{border:2px solid #eee; border-radius: 14px; /*테두리 동글동글*/ padding: 0.1px 7px; font-size: 13px; font-weight: bold; text-decoration-line: none;}
