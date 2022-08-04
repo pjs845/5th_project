@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE HTML>
 <!-- 자바스크립트 차단된 콘텐츠 자동 허용 실시 -->
 <!-- saved from url=(0013)about:internet -->
@@ -26,35 +26,7 @@
     <!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
 
     <script>
-        function sido(location){
-            console.log("");
-            console.log("[tableInsert] : [start]"); 
-            console.log("");
-
-            // [ajax 통신 >> tableList 테이블 데이터가 리스트에 포함된 경우]
-            // pageInsert(page);
-            var location = []
-       
-            // [for 반복문을 돌려서 tr 데이터 임의로 생성 실시]
-            for (const camp of location){
-                // JSON 형식으로 리스트에 추가 실시
-                var jsonObject = {"name":String(camp["name"]), "addr":String(camp["addr"]), "img":String(camp["img"])};
-                //var jsonObject = {"name":String(key)};
-				console.log(jsonObject);
-                tableList.push(jsonObject);
-            }
-
-
-            // [테이블 리스트에 저장된 데이터 확인]
-            //console.log("");
-            //console.log("[tableInsert] : [list] : " + JSON.stringify(tableList)); 
-            //console.log("");
-			console.log("location" + location);
-
-
-            // [테이블 행 개수에따라 페이징 처리 실시]
-            pageInsert(page);
-        }
+        
     </script>
 
     <!-- 내부 CSS 스타일 지정 -->
@@ -153,9 +125,42 @@
     		// [테이블 행 개수에따라 페이징 처리 실시]
     		pageInsert(page);
     	};
+		function sido(location, num){
+            console.log("");
+            console.log("[tableInsert] : [start]"); 
+            console.log("");
+			
+			var n = String(num);
+			console.log(n);
+			if (n.length>0){
+				mouseClick("/static/img/kmap-"+n+".gif");
+				$('#cate1').val(location).prop("selected",true);
+			}else{
+				$('#cate1').val("전국").prop("selected",true);
+				mouseClick("/static/img/map.gif");
+			}
+            // [ajax 통신 >> tableList 테이블 데이터가 리스트에 포함된 경우]
+            // pageInsert(page);
+			tableList.length = 0;
+			for (const camp of {{camps|safe}}){
+    			// JSON 형식으로 리스트에 추가 실시
+    			var jsonObject = {"name":String(camp["name"]), "addr":String(camp["addr"]), "img":String(camp["img"])};
+    			tableList.push(jsonObject);
+    		}
 
-
-
+			var selected = []
+			for (const loc of tableList){
+				if(loc.addr.includes(location)){
+					selected.push(loc);
+				}
+			}
+			tableList.length = 0;
+			for (const loc of selected){
+				tableList.push(loc);
+			}
+            // [테이블 행 개수에따라 페이징 처리 실시]
+            pageInsert(1);
+        };
 
     	/* [페이징 처리 이벤트 수행 함수] */
     	function pageInsert(value){
@@ -378,6 +383,10 @@
                         insertPg += "<a class='arrow next' href='#''></a>";
                         insertPg += "</div>";
                         $("#pg_wrap").append(insertPg);	
+						$("#total_cnt").empty();
+						var insert_tot = "";
+						insert_tot += tableList.length
+						$("#total_cnt").append(insert_tot);
     					return;
     				}
     				// json 데이터 파싱 실시

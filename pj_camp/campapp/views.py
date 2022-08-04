@@ -33,9 +33,7 @@ for x in docs:
 def main_page(request):
     template = loader.get_template("pj_main.html")
     context = {
-        'infolen':len(a),
         'camps':camps,
-        'col': col,
     }
     return HttpResponse(template.render(context, request))
 
@@ -45,7 +43,6 @@ def paging(request):
     template = loader.get_template("paging.html")
     context = {
         'camps': camps,
-        'col': col,
     }
     return HttpResponse(template.render(context, request))
 
@@ -57,8 +54,15 @@ def signup(request):
     return HttpResponse(template.render(context, request))
 
 ########## 서브 페이지 ##########
-def sub_page(request): #서브로 가는 페이지 연동
-    template = loader.get_template("test.html")
+def board_page(request): #게시판으로 가는 페이지 연동
+    template = loader.get_template("board.html")
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+########## 광고 페이지 ##########
+def ad_page(request): #서브로 가는 페이지 연동
+    template = loader.get_template("ad.html")
     context = {
     }
     return HttpResponse(template.render(context, request))
