@@ -23,9 +23,9 @@
 
     <!-- 부트스트랩 CDN 로드 : 항상 최신 버전 사용 : netdna -->
     <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"> -->
-    <!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
-
+    <!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->	
     <script>
+		
         
     </script>
 
@@ -72,6 +72,11 @@
 
     <!-- 내부 JS 지정 -->
     <script type="text/javascript">
+		
+		Fancybox.bind("[data-fancybox]", { 
+			// Your options go here 
+		});
+		
     	
     	/* [html 최초 로드 및 이벤트 상시 대기 실시] */
     	window.onload = function() {
@@ -132,12 +137,13 @@
 			
 			var n = String(num);
 			console.log(n);
-			if (n.length>0){
-				mouseClick("/static/img/kmap-"+n+".gif");
-				$('#cate1').val(location).prop("selected",true);
-			}else{
+			if (n==="00"){
+				location = "";
 				$('#cate1').val("전국").prop("selected",true);
 				mouseClick("/static/img/map.gif");
+			}else{
+				mouseClick("/static/img/kmap-"+n+".gif");
+				$('#cate1').val(location).prop("selected",true);
 			}
             // [ajax 통신 >> tableList 테이블 데이터가 리스트에 포함된 경우]
             // pageInsert(page);
@@ -397,7 +403,7 @@
 
     				// 동적으로 리스트 추가
     				var insertTr = ""; // 변수 선언
-                    insertTr += "<div class='items hand' onclick=''>"; 
+                    insertTr += "<div data-fancybox class='items hand' style=\"cursor: pointer;\" href="+img+">"; 
     				insertTr += "<div class='photo'>"; 
     				insertTr += "<img src="+img+" alt="+name+" class='tm' width='150' height='150'>";
     				insertTr += "<span class='distance'></span>";
