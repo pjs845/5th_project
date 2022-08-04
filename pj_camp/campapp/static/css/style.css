@@ -69,7 +69,7 @@ fieldset {border:0 none;margin:0; padding:0;}
 .middle-pannel2 {margin:0px;padding:0px;}
 
 /* 왼쪽 지도  */
-.pannel2-1 {width:27%; height:750px; background-color:rgb(106, 106, 112);float:left;}
+.pannel2-1 {width:27%; height:750px; background-color:rgb(255, 255, 255);float:left;}
 .pannel2-1 .pannel2-1-1 h2{margin-top:150px;margin:40px;padding:0;font-size:1.7rem;text-align:center;letter-spacing:-0.03em}
 .pannel2-1 .pannel2-1-1 h2 span {color:#6419c5}
 .pannel2-1 .pannel2-1-2 {margin:30px;padding:0;font-size:1.4rem;text-align:center;letter-spacing:-0.03em}
@@ -82,12 +82,12 @@ fieldset {border:0 none;margin:0; padding:0;}
 .pannel2-2 .pannel2-2-1 {width:82%;margin:auto;}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 {display:inline-block;width:82%;margin-bottom:20px;margin-top:45px;}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 > ul li {padding:0 10px}
-.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-3 {background:#25a5f0;color:#fff;height:36px;line-height:36px;font-size:.9rem;width:66px;text-align:center}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-3 {background:#25a5f0;color:#fff;height:36px;line-height:36px;font-size:.9rem;width:66px;text-align:center; border: 1px solid rgb(37, 34, 252);}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 {border:1px #ccc solid;height:34px;line-height:34px;margin:0 10px;}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 .btn_page {width:34px;height:34px;color:#ccc;text-align:center;font-size:15px;pointer-events: none;}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 .btn_page.on {color:#555;background:#f0f0f0;pointer-events: auto;}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 .btn_page.on:hover {background:#ccc;color:#fff}
-.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 .pagestat {padding:0;width:70px;text-align:center}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 .pagestat {padding:0;width:70px;text-align:center }/**/
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 .adq  {display:inline-block;padding:8px 0 0 0;font-weight:500;font-size:15px;color:#aa0a47;font-weight: bold;}
 .pannel2-2 .pannel2-2-1 .pannel2-2-2 .adq:hover {border-color:#f52390}
 
@@ -119,6 +119,7 @@ fieldset {border:0 none;margin:0; padding:0;}
 #footer-full .copy {line-height:1.9;color:#48494f}
 
 
+
 /* 추가적 */
 .fl {float: left;}
 
@@ -127,20 +128,55 @@ fieldset {border:0 none;margin:0; padding:0;}
 a {text-decoration: none;color: #000;}
 .searchSelect {font-family: "noto sans kr";outline: none;min-width: 70px;min-width: 70px\9;height: 36px;padding: 4px 40px 6px 15px;padding: 8px 9px 3px 15px\9;border: 1px solid #bbb;
     font-size: 14px;font-size: 12px\9;line-height: 19px;color: #444;appearance: none;-webkit-appearance: none;-moz-appearance: none;-o-appearance: none;background:right center no-repeat;
-    background: none\9;background-color: #fff;font-weight: 400;}
+    background: none\9;background-color: #fff;font-weight: 700; background-image:url('../img/select1.png');border: 3px solid rgb(44, 40, 40);}
 
 
-/* 서브 페이지 */
-
-/* 왼쪽 사이드 메뉴 */
-aside#left{float: left;width:200px; height:500px; float:left; margin-left:250px; margin-right:50px;}
-aside#left ul{ list-style: none}
-aside#left ul li{background-color: #3f3f3f;padding: 5px 10px;border-bottom: 1px solid gray;}
-aside#left ul li a{color: white;text-decoration:none;}
-aside#left ul li:hover{background-color: gray;}
-aside#main{float: left;}
- 
+/* 게 시 판 페이지 CSS */
 /* 가운데 본문 영역 */
-section#main{width:100%; height:800px; float:left; margin-bottom: 20px; margin-top: 200px;}
-section#main h1 {margin-bottom:50px; font-size:60px;}
-table {font-size:20px; border-collapse: collapse;}
+table {font-size:25px;}
+.board-middle h1 {font-size:60px; padding-top:200px; padding-bottom:30px;}
+
+
+/* 광고 및 등록 페이지 CSS */
+.ad-main h1{text-align: center; margin:0px; padding-top:200px; padding-bottom: 50px;}
+#joinForm{width: 450px; height:100px; margin: 0 auto;}
+ul.join_box{border: 1px solid #ddd;background-color: #fff;}
+.checkBox,.checkBox>ul{position: relative;}
+.checkBox>ul>li{float: left;}
+.checkBox>ul>li:first-child{width: 85%;padding: 15px;font-weight: 600;color: #888;}
+.checkBox>ul>li:nth-child(2){position: absolute;top: 50%;right: 30px;margin-top: -12px;}
+.checkBox textarea{width: 96%;height: 90px; margin: 0 2%;background-color: #f7f7f7;color: #888; border: none;}
+.footBtwrap{margin-top: 15px;}.footBtwrap>li{float: left;width: 50%;height: 60px;}
+.footBtwrap>li>button{display: block; width: 100%;height: 100%; font-size: 20px;text-align: center;line-height: 60px;}
+.fpmgBt1{background-color: #fff;color:#888}.fpmgBt2{background-color: lightsalmon;color: #fff}
+ul>li{list-style: none}
+
+/* 광고 및 등록 페이지 CSS */
+/* 등록 하는 란 */
+.ad-middle {margin-top: 100px; margin-bottom: 130px; margin-left:400px;width:58%;}
+.ad-middle .first .one-td {font-size:20px; text-align: center;padding-right:50px;}
+.ad-middle .first .two-td a {font-size:18px;border: 2px solid;padding: 4px 7px;}
+.ad-middle .first .two-td a:hover {color:#25a5f0}
+
+.ad-middle .two .three-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .two .input1 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+
+.ad-middle .three .four-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .three .input2 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+
+.ad-middle .four .five-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .four .input3 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+.ad-middle .four .input4 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+#email-check {margin-top: 30px; font-size:21px;}
+
+.ad-middle .five .six-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .five .input5 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+
+.ad-middle .six .seven-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .six .input6 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+
+#callfb {font-size:14px; margin-top: 80px;}
+.ad-middle .td2 ul li {font-size:14px;}
+
+.checkBtn {font-size:18px; border-radius: 40px;padding: 5px 20px; margin-bottom: 100px;}
+

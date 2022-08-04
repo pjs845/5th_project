@@ -54,8 +54,15 @@ def signup(request):
     return HttpResponse(template.render(context, request))
 
 ########## 서브 페이지 ##########
-def sub_page(request): #서브로 가는 페이지 연동
-    template = loader.get_template("pj_sub.html")
+def board_page(request): #게시판으로 가는 페이지 연동
+    template = loader.get_template("board.html")
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
+
+########## 광고 페이지 ##########
+def ad_page(request): #서브로 가는 페이지 연동
+    template = loader.get_template("ad.html")
     context = {
     }
     return HttpResponse(template.render(context, request))
