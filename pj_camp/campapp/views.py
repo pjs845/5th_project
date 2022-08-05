@@ -133,7 +133,23 @@ def notice(request): #서브로 가는 페이지 연동
 def content(request, id):
     template = loader.get_template('content.html')
     contents = Notice.objects.get(id=id)
+    contents.count += 1
+    contents.save()
     context = {
         'content': contents,
     }
     return HttpResponse(template.render(context, request))
+
+########## 공지사항 검색 ##################
+from django.db.models import Q
+
+def search(request):
+    notice = Notice.objects.all().order_by('-id')
+    q = request.POST.get('q', "") 
+    if q:
+        notice = notice.filter(Q (subject__contains=q) | Q (content__contains=q))
+        print("notice: ")
+        return render(request, 'notice.html', {'notices' : notice, 'q' : q})
+    
+    else:
+        return render(request, 'notice.html')
