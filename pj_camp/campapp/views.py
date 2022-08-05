@@ -1,4 +1,4 @@
-from types import MemberDescriptorType
+
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -11,6 +11,8 @@ from bs4 import BeautifulSoup
 from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from . models import Member #회원정보 
+
 
 # DB 불러오기
 url = "mongodb://192.168.0.66:27017"
@@ -29,7 +31,7 @@ for x in docs:
         name = x["캠핑장이름"][x["캠핑장이름"].find("]")+1:]
         camp = {"name":name,"addr": x["지역이름"], "img":y["src"]}
         camps.append(camp)
-from .models import Member #회원정보   
+  
 ########## 메인 페이지  ##########
 def main_page(request):
     template = loader.get_template("pj_main.html")
@@ -39,7 +41,6 @@ def main_page(request):
     return HttpResponse(template.render(context, request))
 
 ########## 메인 페이지 -( 페이징 )- ##########
-
 def paging(request):
     template = loader.get_template("paging.html")
     context = {
@@ -47,13 +48,48 @@ def paging(request):
     }
     return HttpResponse(template.render(context, request))
 
+########## login 페이지 ##########
+def login(request):
+   return render(request,'login.html')
+
+########## login_ok(조건) ##########
+def login_ok(request):
+    email = request.POST.get('email',None) 
+    pwd = request.POST.get('password1', None) 
+    #print("email", email, "pwd", pwd)
+    try:
+      member = Member.objects.get(email=email)   
+    except Member.DoesNotExist:
+      member = None 
+    result = 0
+    if member != None:
+        if member.password1 == pwd:
+            result = 2
+            request.session['login_ok_user'] = member.email 
+        else:
+            result = 1
+    else:
+        result = 0   
+    temlate = loader.get_template("login_ok.html")
+    context = {
+        'result': result, 
+    }
+    return HttpResponse(temlate.render(context, request))
+
+########## logout ##########
+def logout(request):
+    if request.session.get('login_ok_user'):
+        del request.session['login_ok_user']
+        #request.session.clear() # 서버측의 해당 user의 session방을 초기화
+        #request.session.flush() # 서버측의 해당 user의 session방을 삭제
+    return redirect("../")
+
 ########## signup 페이지 ##########
 def signup(request):
     template = loader.get_template("signup.html")
     context = {
     }
     return HttpResponse(template.render(context, request))
-
 ########## signup_ok (조건) ##########
 def signup_ok(request):
    if request.method == "POST":
@@ -66,17 +102,17 @@ def signup_ok(request):
          member = Member(name = a, email = b, phone = c, password1 = d, rdate=nowDatetime, udate=nowDatetime)
          member.save()
          return HttpResponseRedirect(reverse('main'))
-
 ########## 서브 페이지 ##########
 def board_page(request): #게시판으로 가는 페이지 연동
     template = loader.get_template("board.html")
     context = {
     }
     return HttpResponse(template.render(context, request))
-
 ########## 광고 페이지 ##########
 def ad_page(request): #서브로 가는 페이지 연동
     template = loader.get_template("ad.html")
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+

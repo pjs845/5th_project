@@ -5,6 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <script src="{% static '/js/trim.js' %}"></script> 
 <!--   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
      Bootstrap CSS -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
@@ -15,14 +17,15 @@
   </head>
   <body>
     <div class="uf-form-signin">
-      <form class="mt-4">  
+      <form class="mt-4" action="login_ok/" method="post">  
+      {% csrf_token %}
         <div class="input-group uf-input-group input-group-lg mb-3">
           <span class="input-group-text fa fa-user"></span>
-          <input type="text" class="form-control" placeholder="Username or Email address">
+          <input name = "email" type="text" class="form-control" placeholder="Email address">
         </div>
         <div class="input-group uf-input-group input-group-lg mb-3">
           <span class="input-group-text fa fa-lock"></span>
-          <input type="password" class="form-control" placeholder="Password">
+          <input name = "password1" type="password" class="form-control" placeholder="Password">
         </div>
         <div class="d-flex mb-3 justify-content-between">
           <div class="form-check">
@@ -46,12 +49,13 @@
         </div>
         <div class="mt-4 text-center">
           <span class="text-white">Don't have an account?</span>
-          <a href="register.html">Sign Up</a>
+          <a href="signup">Sign Up</a>
         </div>
       </form>
     </div>
 
     <!-- JavaScript -->
+
     <!-- Separate Popper and Bootstrap JS -->
     <script src="./assets/js/popper.min.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
