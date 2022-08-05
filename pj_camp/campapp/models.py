@@ -8,3 +8,10 @@ class Member(models.Model):
     password1 = models.TextField()
     rdate = models.TextField()
     udate = models.DateTimeField()
+
+class Notice(models.Model):
+    writer = models.CharField(max_length=200)
+    subject = models.TextField(null=True)
+    content = models.TextField()
+    count = models.IntegerField()
+    rdate = models.DateTimeField()

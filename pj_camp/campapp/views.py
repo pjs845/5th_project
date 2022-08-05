@@ -12,6 +12,7 @@ from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from . models import Member #회원정보 
+from .models import Notice #공지사항
 
 
 # DB 불러오기
@@ -116,3 +117,20 @@ def ad_page(request): #서브로 가는 페이지 연동
     return HttpResponse(template.render(context, request))
 
 
+########## 공지사항 페이지 ###########
+def notice(request): #서브로 가는 페이지 연동
+    template = loader.get_template("notice.html")
+    notices = Notice.objects.all().order_by('-id').values()
+    context = {
+        "notices":notices
+    }
+    return HttpResponse(template.render(context, request))
+
+########## 공지사항 내용 페이지 #############
+def content(request, id):
+    template = loader.get_template('content.html')
+    contents = Notice.objects.get(id=id)
+    context = {
+        'content': contents,
+    }
+    return HttpResponse(template.render(context, request))
