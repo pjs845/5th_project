@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+{% load static %}
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>캠핑구 공지사항</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/notice_style.css' %}">
+</head>
+<body>
+    <div id="header-full">
+        <div class="gnb">
+            <ul>
+                <li><a href="javascript:void(0)" class="login" onclick="isLogin()">로그인</a></li>
+                <li><a href="javascript:void(0)" class="join" onclick="isLogin('join')">회원가입</a></li>
+                <li><a href="./?c=cs/notice&amp;m=bbs&amp;bid=notice">공지사항</a></li>
+                <li><a href="./?c=cs/notice">고객센터</a></li>
+            </ul>
+        </div>
+    
+        <div class="header-wrap">
+            <div class="logo">
+                <h1><a href="../"><img src="/static/img/cam.png" alt="4조캠핑"></a></h1>
+            </div>
+    
+            <div class="topmenu">
+                <ul>
+                    <li id="topmenu0">
+                    <a href="./">전체</a>
+                </li>
+                            <li id="topmenu1">
+                    <a href="./">메뉴1</a>
+                </li>
+                            <li id="topmenu2">
+                    <a href="./">메뉴2</a>
+                </li>
+                            <li id="topmenu3">
+                    <a href="./">메뉴3</a>
+                </li>
+                
+                <li>
+                    <a href="javascript:;" data-fancybox="" data-type="ajax" data-src="./?m=camping&amp;_ajax=themesearch&amp;fun=&amp;nature=&amp;themecat=&amp;facilities=" onclick="$.fancybox.close( all )">메뉴4</a>
+                </li>
+            
+    
+                <li>
+                    <a href="./?c=market">캠핑물건장터</a>
+                    <ul style="display: none;">
+                        <li><a href="./?c=market/sale">팝니다</a></li>
+                        <li><a href="./?c=market/buy">삽니다</a></li>
+                    </ul>
+                </li>
+    
+                <li>
+                    <a href="./">게 시 판</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 미들 -->
+    <center class="board-middle">
+        <h1>공지사항</h1>
+        <font color='gray' size='4' face='hanna'>
+    <hr width='1400' size='2' color='gray' noshade>  
+    </center>
+    <section class="notice">
+          <!-- board seach area -->
+          <div id="board-search">
+              <div class="container">
+                  <div class="search-window">
+                      <form action="">
+                          <div class="search-wrap">
+                              <label for="search" class="blind">공지사항 내용 검색</label>
+                              <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+                              <button type="submit" class="btn btn-dark">검색</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+         
+        <!-- board list area -->
+          <div id="board-list">
+              <div class="container">
+                  <table class="board-table">
+                      <thead>
+                      <tr>
+                          <th scope="col" class="th-num">번호</th>
+                          <th scope="col" class="th-title">제목</th>
+                          <th scope="col" class="th-date">등록일</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {% include "notice_paging.html" %}   
+                      </tbody>
+                  </table>
+                  <nav aria-label="Page navigation example">		
+                    <ul id="dyn_ul" class="pagination" style="justify-content: center;">
+                    </ul>
+                  </nav>
+              </div>
+          </div>
+      
+      </section>
+                
+    <!-- 미들 끝 -->
+    <div id="footer-full">
+        <div class="m-wrap">
+            {% comment %} <div class="fl flogo"><a href="/" title="클릭시 메인으로 이동" class="footer_logo"><img src="/layouts/5g/image/logo_square_100.jpg" alt="오지캠핑 로고"></a></div> {% endcomment %}
+            <div class="fl fcenter">
+                <div class="bottomMenu">
+                    <a href="./?mod=private">개인정보취급방침</a> <span class="vline">|</span>
+                    <a href="./?mod=agreement">홈페이지 이용약관</a> <span class="vline">|</span>
+                    <a href="./?c=cs/contactus">광고 및 제휴문의</a> <span class="vline">|</span>
+                    <a href="./?c=cs/notice">고객센터</a> <span class="vline">|</span>
+                                    <a href="javascript:void(0)" onclick="isLogin('join')">회원가입</a> <span class="vline">|</span>
+                    <a href="javascript:void(0)" onclick="isLogin()">로그인</a>
+                </div>
+    
+                <div class="copyright">
+                    <span class="copy">
+                        Copyright © 2022 <span class="b">www.campingu.com</span>. All rights reserved. 
+                        <br>
+                        
+                        <span class="b"><i class="fa fa-phone"></i> 전화</span> 010-0000-0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="b"><i class="fa fa-envelope-o" aria-hidden="true"></i> 이메일</span> <a href="mailto:blueb@blueb.co.kr">test@test.co.kr</a>
+                    </span>
+                </div>
+            </div> 
+        </div>
+    </div>
+</html>

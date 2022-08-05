@@ -80,3 +80,10 @@ def ad_page(request): #서브로 가는 페이지 연동
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+########## 공지사항 페이지 ###########
+def notice(request): #서브로 가는 페이지 연동
+    template = loader.get_template("notice.html")
+    context = {
+    }
+    return HttpResponse(template.render(context, request))
