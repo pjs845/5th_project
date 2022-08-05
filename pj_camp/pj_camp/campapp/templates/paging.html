@@ -71,7 +71,12 @@
 
 
     <!-- 내부 JS 지정 -->
-    <script type="text/javascript"> 	
+    <script type="text/javascript">
+
+		Fancybox.bind("[data-fancybox]", { 
+			// Your options go here 
+		});
+    	
     	/* [html 최초 로드 및 이벤트 상시 대기 실시] */
     	window.onload = function() {
     		console.log("");
@@ -87,18 +92,11 @@
 
     	/* [테이블 리스트 전역 변수 선언 실시] */
     	const tableList = []; // tableInsert 함수에서 for문을 돌면서 삽입 실시
-    	const pageList = 10; // 한개의 페이지에 보여질 목록 개수
+    	const pageList = 6; // 한개의 페이지에 보여질 목록 개수
     	const pageMax = 5; // 최대 생성될 페이지 개수 (페이지를 더보려면 이전, 다음 버튼 클릭해야함)    	
     	var idx = 0; //idx 값 확인 후 동적 페이지 전환 및 데이터 표시
     	var page = 1; //생성 시작할 페이지 번호
 
-        const table = [{"num":"1", "subject":"제목1", "rdate":"2022.08.04"},
-        {"num":"2", "subject":"제목2", "rdate":"2022.08.05"},
-        {"num":"3", "subject":"제목3", "rdate":"2022.08.06"},
-        {"num":"4", "subject":"제목4", "rdate":"2022.08.07"},
-        {"num":"5", "subject":"제목5", "rdate":"2022.08.08"},
-        {"num":"6", "subject":"제목6", "rdate":"2022.08.09"},
-        {"num":"7", "subject":"제목7", "rdate":"2022.08.10"}]
 
 
 
@@ -114,14 +112,60 @@
 
     		
     		// [for 반복문을 돌려서 tr 데이터 임의로 생성 실시]
-    		for (const camp of table){
-    			var jsonObject = {"num":String(table["num"]), "subject":String(table["subject"]), "rdate":String(table["rdate"])};
+    		for (const camp of {{camps|safe}}){
+    			// JSON 형식으로 리스트에 추가 실시
+    			var jsonObject = {"name":String(camp["name"]), "addr":String(camp["addr"]), "img":String(camp["img"])};
+                //var jsonObject = {"name":String(key)};
     			tableList.push(jsonObject);
     		}
-            console.log("tablelist:" + tableList.length);
+
+
+    		// [테이블 리스트에 저장된 데이터 확인]
+    		console.log("");
+    		console.log("[tableInsert] : [list] : " + JSON.stringify(tableList)); 
+    		console.log("");
+
+
     		// [테이블 행 개수에따라 페이징 처리 실시]
     		pageInsert(page);
     	};
+		function sido(location, num){
+            console.log("");
+            console.log("[tableInsert] : [start]"); 
+            console.log("");
+			
+			var n = String(num);
+			console.log(n);
+			if (n==="00"){
+				location = "";
+				$('#cate1').val("전국").prop("selected",true);
+				mouseClick("/static/img/map.gif");
+			}else{
+				mouseClick("/static/img/kmap-"+n+".gif");
+				$('#cate1').val(location).prop("selected",true);
+			}
+            // [ajax 통신 >> tableList 테이블 데이터가 리스트에 포함된 경우]
+            // pageInsert(page);
+			tableList.length = 0;
+			for (const camp of {{camps|safe}}){
+    			// JSON 형식으로 리스트에 추가 실시
+    			var jsonObject = {"name":String(camp["name"]), "addr":String(camp["addr"]), "img":String(camp["img"])};
+    			tableList.push(jsonObject);
+    		}
+
+			var selected = []
+			for (const loc of tableList){
+				if(loc.addr.includes(location)){
+					selected.push(loc);
+				}
+			}
+			tableList.length = 0;
+			for (const loc of selected){
+				tableList.push(loc);
+			}
+            // [테이블 행 개수에따라 페이징 처리 실시]
+            pageInsert(1);
+        };
 
     	/* [페이징 처리 이벤트 수행 함수] */
     	function pageInsert(value){
@@ -137,6 +181,11 @@
     		var startIndex = value; // 생성 시작 페이지    		
     		//var endIndex = $("#dyn_tbody tr").length; // tbody에 동적으로 추가된 tr 개수 확인
     		var endIndex = tableList.length; // 배열에 있는 길이 확인
+    		console.log("");
+    		console.log("[pageInsert] : [startIndex] : " + startIndex); 
+    		console.log("[pageInsert] : [endIndex] : " + endIndex); 
+    		console.log("");
+
 
     		// [tr 개수에 따라 페이징 해야할 개수 확인]
     		var pageCount = 0;
@@ -289,6 +338,9 @@
     		// [새롭게 페이지 목록 리스트 처리 실시]
     		newPage(currentpg, pageCount);
     	};
+
+
+
     	/* [tbody tr 동적 삽입 이벤트 수행 함수] */    	
     	function newPage(pageCurrent, pgcount){
     		// [pageCurrent [-1] >> 이전 / pageCurrent [1 이상] >> 일반 / pageCurrent [0] >> 다음]
@@ -350,14 +402,17 @@
 
     				// 동적으로 리스트 추가
     				var insertTr = ""; // 변수 선언
-                    insertTr += "<tr>"; 
-    				insertTr += "<td>3</td>"; 
-    				insertTr += "<th>";
-    				insertTr += "<a href='#!'>[공지사항] 개인정보 처리방침 변경안내처리방침</a>";
-    				insertTr += "<p>테스트</p>";
-    				insertTr += "</th>";    
-                    insertTr += "<td>2017.07.13</td>";    
-                    insertTr += "</tr>";                     
+                    insertTr += "<div data-fancybox class='items hand' style=\"cursor: pointer;\" href="+img+">"; 
+    				insertTr += "<div class='photo'>"; 
+    				insertTr += "<img src="+img+" alt="+name+" class='tm' width='150' height='150'>";
+    				insertTr += "<span class='distance'></span>";
+    				insertTr += "<span class='cat' style='color:#91ee6c'>유료캠핑장</span>";
+    				insertTr += "</div>";    
+                    insertTr += "<div class='cont'>";    
+                    insertTr += "<p class='tt'>"+name+"</p>";    
+                    insertTr += "<p class='mcont'>"+addr+"</p>";    
+                    insertTr += "</div>";    
+                    insertTr += "</div>";    
     				// jquery append 사용해 동적으로 추가 실시
     				$("#dyn_tbody").append(insertTr);
     				// 카운트 횟수 증가 		
@@ -373,9 +428,20 @@
 
 <body>
 
+	<!-- 
+	[요약 설명]	
+	1. table :  테이블 속성을 설정합니다
+	2. thead-dark : 테이블 헤더 속성을 설정합니다
+	3. dyn_tbody : 동적으로 테이블 데이터를 생성합니다 (자바스크립트 확인 필요)
+	4. Pagination : 쪽수 매기기 의미로 여러 페이지에 걸쳐 있음을 나타냅니다
+	5. justify-content : 페이징 레이아웃을 중앙 정렬을 실시합니다
+	6. 부트스트랩 공식 사이트 : https://getbootstrap.com/docs/4.1/content/typography/
+	 -->
+
+
 	<!-- 테이블 속성 정의 -->
-        <tbody id="dyn_tbody" >
-        </tbody>  
+        <div id="dyn_tbody" >
+        </div>  
 </body>
 
 </html>
