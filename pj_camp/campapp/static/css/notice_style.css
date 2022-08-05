@@ -74,9 +74,18 @@ table {
     width: 100px;
     text-align: center;
   }
+
+  .board-table .th-writer {
+    width: 100px;
+    text-align: center;
+  }
   
   .board-table .th-date {
-    width: 200px;
+    width: 100px;
+  }
+
+  .board-table #dyn_tbody #th-subject{
+    text-align: left;
   }
   
   .board-table th, .board-table td {

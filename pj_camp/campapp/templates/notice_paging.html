@@ -87,21 +87,19 @@
 
     	/* [테이블 리스트 전역 변수 선언 실시] */
     	const tableList = []; // tableInsert 함수에서 for문을 돌면서 삽입 실시
-    	const pageList = 6; // 한개의 페이지에 보여질 목록 개수
+    	const pageList = 5; // 한개의 페이지에 보여질 목록 개수
     	const pageMax = 5; // 최대 생성될 페이지 개수 (페이지를 더보려면 이전, 다음 버튼 클릭해야함)    	
     	var idx = 0; //idx 값 확인 후 동적 페이지 전환 및 데이터 표시
     	var page = 1; //생성 시작할 페이지 번호
 
-        const table = [{"num":"1", "subject":"제목1", "rdate":"2022.08.04"},
-        {"num":"2", "subject":"제목2", "rdate":"2022.08.05"},
-        {"num":"3", "subject":"제목3", "rdate":"2022.08.06"},
-        {"num":"4", "subject":"제목4", "rdate":"2022.08.07"},
-        {"num":"5", "subject":"제목5", "rdate":"2022.08.08"},
-        {"num":"6", "subject":"제목6", "rdate":"2022.08.09"},
-        {"num":"7", "subject":"제목7", "rdate":"2022.08.10"}]
-
-
-
+        /*const table = [{"id":"1", "writer":"관리자", "subject":"제목1", "content":"안녕하세요", "rdate":"2022.08.04"},
+        {"id":"2", "writer":"관리자", "subject":"제목2", "content":"안녕하세요", "rdate":"2022.08.05"},
+        {"id":"3", "writer":"관리자", "subject":"제목3", "content":"안녕하세요", "rdate":"2022.08.06"},
+        {"id":"4", "writer":"관리자", "subject":"제목4", "content":"안녕하세요", "rdate":"2022.08.07"},
+        {"id":"5", "writer":"관리자", "subject":"제목5", "content":"안녕하세요", "rdate":"2022.08.08"},
+        {"id":"6", "writer":"관리자", "subject":"제목6", "content":"안녕하세요", "rdate":"2022.08.09"},
+        {"id":"7", "writer":"관리자", "subject":"제목7", "content":"안녕하세요", "rdate":"2022.08.10"}]*/
+		
     	/* [tbody tr 동적 삽입 이벤트 수행 함수] */    	
     	function tableInsert(){
     		console.log("");
@@ -114,10 +112,14 @@
 
     		
     		// [for 반복문을 돌려서 tr 데이터 임의로 생성 실시]
-    		for (const camp of table){
-    			var jsonObject = {"num":String(table["num"]), "subject":String(table["subject"]), "rdate":String(table["rdate"])};
-    			tableList.push(jsonObject);
-    		}
+    		{% for notice in notices %}
+				var rdate = "{{notice.rdate}}";
+				rdate = rdate.split(" ");
+				rdate = [rdate[0], rdate[1], rdate[2]]
+				rdate = rdate.join(" ")
+				var jsonObject = {"id":"{{notice.id}}", "subject":"{{notice.subject}}", "writer":"{{notice.writer}}", "rdate": rdate};
+				tableList.push(jsonObject);
+			{% endfor %}
             console.log("tablelist:" + tableList.length);
     		// [테이블 행 개수에따라 페이징 처리 실시]
     		pageInsert(page);
@@ -344,19 +346,22 @@
     				}
     				// json 데이터 파싱 실시
     				var jsonObject = JSON.parse(JSON.stringify(tableList[i])); //각 배열에 있는 jsonObject 참조
-    				var name = jsonObject.name;
-    				var addr = jsonObject.addr;
-    				var img = jsonObject.img;
+    				var id = jsonObject.id;
+    				var subject = jsonObject.subject;
+    				var writer = jsonObject.writer;
+					var rdate = jsonObject.rdate;
+					console.log("jsonObject.id: "+ id);
 
     				// 동적으로 리스트 추가
     				var insertTr = ""; // 변수 선언
                     insertTr += "<tr>"; 
-    				insertTr += "<td>3</td>"; 
-    				insertTr += "<th>";
-    				insertTr += "<a href='#!'>[공지사항] 개인정보 처리방침 변경안내처리방침</a>";
+    				insertTr += "<td>"+id+"</td>"; 
+    				insertTr += "<th id='th-subject'>";
+    				insertTr += "<a href='content/"+id+"'>"+subject+"</a>";
     				insertTr += "<p>테스트</p>";
+					insertTr += "<td>"+writer+"</td>";
     				insertTr += "</th>";    
-                    insertTr += "<td>2017.07.13</td>";    
+                    insertTr += "<td>"+rdate+"</td>";    
                     insertTr += "</tr>";                     
     				// jquery append 사용해 동적으로 추가 실시
     				$("#dyn_tbody").append(insertTr);
