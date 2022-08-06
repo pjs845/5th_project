@@ -241,3 +241,20 @@ html, body {
     content:" : ";
     font-weight:bold;
 }
+
+button.button_2 {
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    margin: 30px;
+    background: black;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  button.button_2:hover {
+    color: white;
+    background: orange;
+  }

@@ -119,6 +119,7 @@
 				rdate = rdate.join(" ")
 				var jsonObject = {"id":"{{notice.id}}", "subject":"{{notice.subject}}", "writer":"{{notice.writer}}", "rdate": rdate};
 				tableList.push(jsonObject);
+				console.log("{{notice}}");
 			{% endfor %}
             console.log("tablelist:" + tableList.length);
     		// [테이블 행 개수에따라 페이징 처리 실시]
@@ -357,7 +358,7 @@
                     insertTr += "<tr>"; 
     				insertTr += "<td>"+id+"</td>"; 
     				insertTr += "<th id='th-subject'>";
-    				insertTr += "<a href='content/"+id+"'>"+subject+"</a>";
+    				insertTr += "<a href='/notice/content/"+id+"'>"+subject+"</a>";
     				insertTr += "<p>테스트</p>";
 					insertTr += "<td>"+writer+"</td>";
     				insertTr += "</th>";    

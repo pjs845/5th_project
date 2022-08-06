@@ -24,7 +24,7 @@
     <hr width='1400' size='2' color='gray' noshade>  
     </center>
     <h1 class="con">게시글 상세</h1>
-    <section class="article-detail table-common con row">
+    <section class="article-detail table-common con row" style="display: block;">
         <div class="article-writer cell">
             <span><br>{{content.id}}</span>
         </div>
@@ -40,7 +40,7 @@
                 <tr class="article-info">
                     <th>작성자</th>
                     <td>{{content.writer}}</td>
-                    <th>날짜</th>
+                    <th style="width: 200px;">날짜</th>
                     <td>{{content.rdate}}</td>
                     <th style="width: 200px;">조회수</th>
                     <td style="width: 200px; padding-right: 50px;">{{content.count}}</td>
@@ -52,8 +52,9 @@
                 </tr>
             </tbody>
         </table>
+        <button class="button_2" style="display: inline-block; margin: 0 5px;  float:right; width:100px;" onclick = "location.href = '/notice'">목록
+        </button>
     </section>
-                
     <!-- 미들 끝 -->
     {% include "footermenubar.html" %}
 </body>
