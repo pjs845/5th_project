@@ -82,7 +82,7 @@ def logout(request):
     if request.session.get('login_ok_user'):
         del request.session['login_ok_user']
         #request.session.clear() # 서버측의 해당 user의 session방을 초기화
-        #request.session.flush() # 서버측의 해당 user의 session방을 삭제
+        request.session.flush() # 서버측의 해당 user의 session방을 삭제
     return redirect("../")
 
 ########## signup 페이지 ##########
