@@ -7,7 +7,7 @@ class Member(models.Model):
     email = models.TextField(null=False, unique=True)
     phone = models.TextField() 
     password1 = models.TextField()
-    rdate = models.TextField()
+    rdate = models.DateTimeField()
     udate = models.DateTimeField()
     
 class Notice(models.Model):

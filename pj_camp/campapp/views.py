@@ -187,3 +187,7 @@ def search_subpage(request):
     }
     search_camp.clear()
     return HttpResponse(template.render(context, request))
+
+########## 글쓰기 페이지 ##########
+def write_page(request):
+    return render(request, 'write.html')   
