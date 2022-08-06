@@ -14,4 +14,6 @@ urlpatterns = [
     path('notice/', views.notice, name='notice'),
     path('notice/content/<int:id>', views.content, name='content'),
     path('notice/search/', views.search, name='search'),
+    path('search_page/', views.search_page, name='search_page'),
+    path('search_subpage/', views.search_subpage, name='search_subpage'),
 ]

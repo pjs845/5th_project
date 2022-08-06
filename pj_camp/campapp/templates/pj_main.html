@@ -22,13 +22,10 @@
     
                 <div class="btn_sido hand">지역별검색 &nbsp;&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></div> 
                 <div class="search-form">
-                    <form action="/" method="get" id="_layout_search_border_" onsubmit="return mainsearchCheck(this);">
+                    <form action="search_subpage/" method="post" id="_layout_search_border_" >
+                        {% csrf_token %}
                     <fieldset>
-                    <input type="hidden" name="r" value="home">
-                    <input type="hidden" name="m" value="camping">
-                    <input type="hidden" name="c" value="camping">
-                        <input autocomplete="off" type="text" id="totalsearch" name="keyword" maxlength="14" placeholder="캠핑장 검색" onfocus="this.placeholder = ''" onblur="this.placeholder = '캠핑장 검색'" class="search_input keyword " value="">
-                        
+                        <input type="text" name="camp_name" class="search_input keyword ">
                         <button type="submit" class="btn_search"><i class="bi bi-search"></i></button>
                     </fieldset>
                     </form>
