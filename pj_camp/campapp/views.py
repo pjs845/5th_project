@@ -38,7 +38,6 @@ def main_page(request):
     return HttpResponse(template.render(context, request))
 
 ########## 메인 페이지 -( 페이징 )- ##########
-
 def paging(request):
     template = loader.get_template("paging.html")
     context = {
@@ -66,3 +65,42 @@ def ad_page(request): #서브로 가는 페이지 연동
     context = {
     }
     return HttpResponse(template.render(context, request))
+
+########## search 페이지 검색 기능 ##########
+def search_page(request):
+    return render(request, 'pj_main.html')
+
+
+########## search 페이지 ##########
+search_camp = []
+from django.core.paginator import Paginator
+def search_subpage(request):
+    # template = loader.get_template('searching.html')
+    ca_na = request.POST.get('camp_name', None)
+    print("form값 체크:",ca_na)
+    where = {"캠핑장이름":{"$regex":ca_na}}
+    f = col.find(where)
+    for x in f:
+        # print(x)
+        soup2 = BeautifulSoup(x['이미지'])
+        image = soup2.find_all("img")
+        # print(image)
+        for win in image:
+            na = x["캠핑장이름"][x["캠핑장이름"].find("]")+1:]
+            searching = {"na":na,"addr": x["지역이름"], "img":win["src"]}
+            search_camp.append(searching)
+    template = loader.get_template('searching.html')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(search_camp, 4000) # 한 페이지안에 표시 수
+    page_obj = paginator.get_page(page)       
+    context = {
+        'page_obj':page_obj,
+        'ca_na':ca_na,
+    }
+    search_camp.clear()
+    return HttpResponse(template.render(context, request))
+    
+
+
+
+
