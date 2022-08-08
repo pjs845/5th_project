@@ -23,37 +23,35 @@
         <font color='gray' size='4' face='hanna'>
     <hr width='1400' size='2' color='gray' noshade>  
     </center>
-    <section class="article-detail table-common con row" style="display: block;">
-        <div class="article-writer cell">
-            <span><br>{{content.id}}</span>
+    <div class="card" style="width:1000px; display:block; margin-left:auto; margin-right:auto;">
+        <!--제목,분류,작성일-->
+        <div class="card-header">
+            <strong>{{ content.subject }}</strong><span style="float:left;">[공지사항]</span>
+            <span style="float:right;">{{ content.rdate|date:'Y.m.d. H:i' }}</span>
         </div>
-        <table class="cell" border="1">
-            <colgroup>
-                <col width="100px">
-            </colgroup>
-            <tbody>
-                <tr class="article-title">
-                    <th>제목</th>
-                    <td colspan="3">{{content.subject}}</td>
-                </tr>
-                <tr class="article-info">
-                    <th>작성자</th>
-                    <td>{{content.writer}}</td>
-                    <th style="width: 200px;">날짜</th>
-                    <td>{{content.rdate}}</td>
-                    <th style="width: 200px;">조회수</th>
-                    <td style="width: 200px; padding-right: 50px;">{{content.count}}</td>
-                </tr>
-                <tr class="article-body" >
-                    <td colspan="4" style="padding-right: 0px;">
-                        {{content.content}}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="card-body">
+            <!--작성자, 조회수-->
+            <div>
+                <span>작성자 : {{ content.writer }}</span>
+                <span style="float:right;">조회수 : {{ content.count }}</span>
+            </div>
+            <!--내용-->
+            <div>
+                {% if content.upload_files %}
+                    <div class="col-12 text-right">
+                        <span>첨부파일 :&nbsp;</span>
+                        <a href="{% url 'notice_download' content.id %}" >{{ filename|truncatechars:25 }}</a>
+                    </div>
+                {% endif %}
+                {% if content.photo %}
+                <img style="display:block; margin-left: auto; margin-right: auto" src="{{ content.photo.url }}" ><br>
+                {% endif %}
+                {{ content.content }}
+            </div>
+        </div>
         <button class="button_2" style="display: inline-block; margin: 0 5px;  float:right; width:100px;" onclick = "location.href = '/notice'">목록
         </button>
-    </section>
+    </div>
     <!-- 미들 끝 -->
     {% include "footermenubar.html" %}
 </body>

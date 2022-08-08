@@ -50,6 +50,19 @@
                       </tr>
                       </thead>
                       <tbody>
+                        {% if q %}
+                        {% else %}
+                        {% if notice_fixed %}
+                        {% for notice in notice_fixed %}
+                        <tr class="table-secondary text-center">
+                            <td style="background-color: #f1d3d3;"><label style="background-color: #ff7a7a; color:white;">공지</label></td>
+                            <td style="background-color: #f1d3d3;"><a href='/notice/content/{{ notice.id }}'>{{ notice.subject|truncatechars:30 }}</a></td>
+                            <td style="background-color: #f1d3d3;">{{ notice.writer }}</td>
+                            <td style="background-color: #f1d3d3;">{{ notice.rdate|date:'Y년 m월 d일' }}</td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                        {% endif %}
                       {% include "notice_paging.html" %}   
                       </tbody>
                   </table>

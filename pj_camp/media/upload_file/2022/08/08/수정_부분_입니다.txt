@@ -1,0 +1,40 @@
+html 
+
+1. searching.html -> findpage.html로 이름 변경 됨
+   (searching.html파일 삭제해도 됩니다)
+
+2. footermenubar.html 수정되었습니다
+
+3. topmenubar.html 수정 되었습니다
+
+-------------------------------------------------
+css
+1. style.css
+ - 오른쪽 캠핑정보 배경색 흰색으로
+   (.pannel2-2 {width:73%; height:750px; background-color:rgb(255, 255, 255);float:left;})
+
+ - 맨아래 주석search 페이지 css 정보 삭제 해도 됩니다
+
+
+ - 맨 위 주석 회원가입/로그인css 없애도 됩니다 , 헤더부분도 삭제하셔도 됩니다.
+
+2. footer.css
+ - 전체내용 수정 되었습니다.
+
+3. top.css
+ - css파일 추가 되었습니다
+
+4. search.css
+ - 내용부분 수정 되었습니다 (전체 복붙 다시 해주시면 됩니다)
+
+5. ligne.css
+ - 내용부분 수정 되었습니다 (전체 복붙 다시 해주시면 됩니다)
+
+-------------------------------------------------
+js
+
+해당사항 없음
+
+
+
+
