@@ -1,0 +1,88 @@
+<html>
+
+<div id="contents">
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+
+
+
+<ul class="tab_list tab_5">
+	<li class="off"><a href="#"><span>내가 찜한 캠핑장</span></a></li>
+	<li class="off"><a href="#"><span>내가 작성한 후기</span></a></li>
+	<li class="off"><a href="#"><span>내가 작성한 리뷰</span></a></li>
+	<li class="on"><a href="#"><span>회원정보</span></a></li>
+</ul>
+
+<h3 class="icon_h3">
+	정보확인</h3>
+<div class="board_list">
+	<table class="table_list">
+		<caption>
+			<strong>정보확인</strong>
+			<p>정보확인</p>
+		</caption>
+		<tbody>
+			<tr>
+				<th>이름 : {{member.name}}</th>
+			</tr>
+			<tr>
+				<th>이메일 : {{member.email}}</th>
+			</tr>
+			<tr>
+				<th>전화번호 : {{member.phone}}</th>
+			</tr>
+		</tbody>
+	</table>
+</div>
+    <div class="board_btn_w">
+	<div class="board_btn">
+        <a href="updateinfo" button type="submit" title="회원수정" class="b_btn_blue" onclick="" type="button">
+			<span>회원수정</span>
+		</button>    
+		<a href="#" button type="submit" title="회원탈퇴" class="b_btn_blue" onclick="deleteMember(); return false;" type="button">
+			<span>회원탈퇴</span></a>
+        
+        </button>
+	</div>
+    </div>
+</div>
+				<!--//내용종료-->
+
+
+
+
+<script type="text/javascript">
+	var path = "";
+	var qustr = "";
+
+	$(function() {
+		alertResMsg("");
+	});
+
+	function deleteMember() {
+
+		if(confirm("회원탈퇴를 하시겠습니까?")){
+			$.ajax({
+				url : "/myPage/deleteMember.do",
+				type : "POST",
+				dataType : "json",
+				async : false
+			}).done(function(resMap) {
+				if (resMap.res == "ok") {
+					alert(resMap.msg);
+					location.href = "/account/logout.do";
+				}else{
+					alert(resMap.msg);
+				}
+			}).fail(function(e) {
+				alert("FAIL - " + e);
+			}).always(function() {
+			});
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+</script>
+
+</html>
