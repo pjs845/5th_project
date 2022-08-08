@@ -49,12 +49,19 @@
             </center>
             <div class="summernote_out">
                 <form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/saveBoard">				
-                    <div class="mb-3">					
-                        <label for="title">제목</label>					
-                        <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요">				
-                    </div>													
-                </form>			
-                <div id="summernote"><p ></p></div>
+                    <table border="0" width="600" align="center" bordercolor="silver">
+                        <tr>
+                           <td width="30%" align="center"><label for="writer" style="white-space:nowrap;">작성자</label></td>
+                           <td><input type="text" class="form-control" name="writer" id="writer" placeholder="" size="60"></td>
+                        </tr>
+                        <tr>
+                           <td align="center"><label for="subject" style="white-space:nowrap;">제목</label></td>
+                           <td><input type="text" class="form-control" name="subject" id="subject" placeholder="제목을 입력해 주세요" size="60"></td>
+                        </tr>
+                        <tr>
+                            <td width="50" align="center"><label for="content" style="white-space:nowrap;">내용</label></td>
+                           <td>
+                            <div id="summernote"><p ></p></div>
                         <script>
                             $(document).ready(function() {
                                 $('#summernote').summernote({
@@ -71,12 +78,15 @@
 
                                 });
                             });
-                        </script> 
-                        <div >				
-                            <button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>				
-                            <button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>			
+                        </script>
+                        <div align="center">				
+                            <button type="button" class="btn btn-sm btn-primary" id="btnSave">글쓰기</button>				
+                            <button type="button" class="btn btn-sm btn-primary" id="btnBoard" onclick = "location.href = '/board'">목록</button>			
                         </div>
-                </div>
+                        </td>
+                        </tr>
+                     </table>											
+                </form>			
         </thead>
     </table>
     <!-- 미들 끝 -->
