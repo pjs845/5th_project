@@ -6,86 +6,50 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <title>캠핑구</title>
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
 <script src="{% static 'js/mouse.js' %}"></script> 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 <body>
-    <div id="header-full">
-        <div class="gnb">
-            <ul>
-                <li><a href="signup" class="login" onclick="isLogin()">로그인</a></li>
-                <li><a href="javascript:void(0)" class="join" onclick="isLogin('join')">회원가입</a></li>
-                <li><a href="./?c=cs/notice&amp;m=bbs&amp;bid=notice">공지사항</a></li>
-                <li><a href="./?c=cs/notice">고객센터</a></li>
-            </ul>
-        </div>
-    
-        <div class="header-wrap">
-            <div class="logo">
-                <h1><a href="./"><img src="/static/img/cam.png" alt="4조캠핑"></a></h1>
-            </div>
-    
-            <div class="topmenu">
-                <ul>
-                    <li id="topmenu0">
-                    <a href="./">전체</a>
-                </li>
-                            <li id="topmenu1">
-                    <a href="./">메뉴1</a>
-                </li>
-                            <li id="topmenu2">
-                    <a href="./">메뉴2</a>
-                </li>
-                            <li id="topmenu3">
-                    <a href="../search_subpage">메뉴3</a>
-                </li>
-                
-                <li>
-                    <a href="javascript:;" data-fancybox="" data-type="ajax" data-src="./?m=camping&amp;_ajax=themesearch&amp;fun=&amp;nature=&amp;themecat=&amp;facilities=" onclick="$.fancybox.close( all )">메뉴4</a>
-                </li>
-            
-    
-                <li>
-                    <a href="./?c=market">캠핑물건장터</a>
-                    <ul style="display: none;">
-                        <li><a href="./?c=market/sale">팝니다</a></li>
-                        <li><a href="./?c=market/buy">삽니다</a></li>
-                    </ul>
-                </li>
-    
-                <li>
-                    <a href="../board">게 시 판</a>
-                </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!--     -->
+    {% include "topmenubar.html" %}   
 
     {% comment %} 1번째 미들 {% endcomment %}
-    <div id="main_fullbg" style="height: 937px; background: url(&quot;/static/img/ww.jpg&quot;) center center / cover no-repeat;">
+    {% comment %} <div id="main_fullbg" style="height: 937px; background: url(&quot;/static/img/ad.mp4&quot;) center center / cover no-repeat;"> {% endcomment %}
         <div class="main_fullbg-wrap">
-            <div class="main-search" style="display: block;">
+            <video muted autoplay loop src="/static/img/ad.mp4">
+            </video>
+            <div class="main-search" >
                 <h2 id="bot">Search Your Campsite</h2>
+            {% comment %} <div class="btn_sido hand">지역별<i class="fa fa-angle-down" aria-hidden="true"></i></div> {% endcomment %}
+            <form action="search_subpage/" method="post">
+                {% csrf_token %}
+            <div class="search-box">
+                
+                <input type="text" class="search-input" name="camp_name" placeholder="캠핑장 or 지역검색">
+                <button type="submit" class="search-btn" >
+                  <i class="fas fa-search"></i>
+                </button>
+            
+              </div>
+              <script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            
+              ga('create', 'UA-46156385-1', 'cssscript.com');
+              ga('send', 'pageview');
+            
+            </script>
+       
+            </div> <!-- main-search 끝-->
+        </div>  <!-- main_fullbg-wrap 끝 -->
     
-                <div class="btn_sido hand">지역별검색<i class="bi bi-chevron-double-down"></i> &nbsp;&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></div> 
-                <div class="search-form">
-                    <form action="search_subpage/" method="post" id="_layout_search_border_" >
-                        {% csrf_token %}
-                    <fieldset>
-                        <input type="text" name="camp_name" class="search_input keyword ">
-                        <button type="submit" class="btn_search"><i class="bi bi-search"></i></button>
-                    </fieldset>
-                    </form>
-                    <!---->
-             
-                    <!----> 
-                </div>
-            </div>
-        </div>
-            <div class="mainwrap"></div>
-    </div>
+            {% comment %} <div class="mainwrap"></div> {% endcomment %}
+    {% comment %} </div> {% endcomment %}
 
     {% comment %} 2번째 미들 {% endcomment %}
 
@@ -137,7 +101,7 @@
                           </nav>
                     <div class="fl selectsido">
                         <select name="cate1" id="cate1" class="searchSelect" onchange="sido(this.options[this.selectedIndex].value,this.options[this.selectedIndex].id)">
-                            <option value="" selected="">전국</option>
+                            <option value="전국" selected="" id="00">전국</option>
                                                     <option value="서울" id="01">
                                 서울						</option>
                                                     <option value="경기" id="02">
@@ -183,6 +147,7 @@
                 </div>
                 <!--head-->
                 <div class="camp_right_content">
+                    <div class="camp_right_content" style="width:1100px;">
                     {% include "paging.html" %}<!--camp_right_content-->
             </div><!--kmapright-->
         </div><!--campinfo_wrap-->	
@@ -191,30 +156,6 @@
         </div>
     </div>
     {% comment %} footer {% endcomment %}
-    <div id="footer-full">
-        <div class="m-wrap">
-            {% comment %} <div class="fl flogo"><a href="/" title="클릭시 메인으로 이동" class="footer_logo"><img src="/layouts/5g/image/logo_square_100.jpg" alt="오지캠핑 로고"></a></div> {% endcomment %}
-            <div class="fl fcenter">
-                <div class="bottomMenu">
-                    <a href="./?mod=private">개인정보취급방침</a> <span class="vline">|</span>
-                    <a href="./?mod=agreement">홈페이지 이용약관</a> <span class="vline">|</span>
-                    <a href="./?c=cs/contactus">광고 및 제휴문의</a> <span class="vline">|</span>
-                    <a href="./?c=cs/notice">고객센터</a> <span class="vline">|</span>
-                                    <a href="javascript:void(0)" onclick="isLogin('join')">회원가입</a> <span class="vline">|</span>
-                    <a href="javascript:void(0)" onclick="isLogin()">로그인</a>
-                </div>
-    
-                <div class="copyright">
-                    <span class="copy">
-                        Copyright © 2022 <span class="b">www.campingu.com</span>. All rights reserved. 
-                        <br>
-                        
-                        <span class="b"><i class="fa fa-phone"></i> 전화</span> 010-0000-0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span class="b"><i class="fa fa-envelope-o" aria-hidden="true"></i> 이메일</span> <a href="mailto:blueb@blueb.co.kr">test@test.co.kr</a>
-                    </span>
-                </div>
-            </div> 
-        </div>
-    </div>
+    {% include "footermenubar.html" %}
 </body>
 </html>
