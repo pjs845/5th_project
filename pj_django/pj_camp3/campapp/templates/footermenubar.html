@@ -1,0 +1,28 @@
+<div id="footer-full">
+    <div class="m-wrap">
+        {% comment %} <div class="fl flogo"><a href="/" title="클릭시 메인으로 이동" class="footer_logo"><img src="/layouts/5g/image/logo_square_100.jpg" alt="오지캠핑 로고"></a></div> {% endcomment %}
+        <div class="fl fcenter">
+            <div class="bottomMenu">
+                <a href="./?mod=private">개인정보취급방침</a> <span class="vline">|</span>
+                <a href="./?mod=agreement">홈페이지 이용약관</a> <span class="vline">|</span>
+                <a href="./?c=cs/contactus">광고 및 제휴문의</a> <span class="vline">|</span>
+                <a href="./?c=cs/notice">고객센터</a> <span class="vline">|</span>
+                {% if request.session.login_ok_user %}
+                <a href="/logout" onclick="isLogout()">로그아웃</a>
+                {% else %}
+                <a href="/signup"onclick="isLogin('join')">회원가입</a> <span class="vline">|</span>
+                <a href="/login" onclick="isLogin()">로그인</a>
+                {% endif %}
+            </div>     
+            <div class="copyright">
+                <span class="copy">
+                    Copyright © 2022 <span class="b">www.campingu.com</span>. All rights reserved. 
+                    <br>
+                    
+                    <span class="b"><i class="fa fa-phone"></i> 전화</span> 010-0000-0000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="b"><i class="fa fa-envelope-o" aria-hidden="true"></i> 이메일</span> <a href="mailto:blueb@blueb.co.kr">test@test.co.kr</a>
+                </span>
+            </div>
+        </div> 
+    </div>
+</div>
