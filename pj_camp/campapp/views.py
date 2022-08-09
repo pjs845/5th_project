@@ -35,6 +35,7 @@ for x in docs:
 ########## 메인 페이지  ##########
 def main_page(request):
     template = loader.get_template("pj_main.html")
+    print(camps)
     context = {
         'camps':camps,
     }
@@ -232,8 +233,8 @@ def board(request):
 
 
 def write_page(request):
-         template = loader.get_template('write.html')
-         return HttpResponse(template.render({}, request))	
+    template = loader.get_template('write.html')
+    return HttpResponse(template.render({}, request))	
 
 def write_ok(request):
     x = request.POST['writer']
@@ -277,3 +278,13 @@ def delete(request, id):
 	board = Board.objects.get(id=id)
 	board.delete()
 	return HttpResponseRedirect(reverse('board'))
+
+
+
+########### 지도 페이지 ################
+def map(request):
+    template = loader.get_template('map.html')
+    context = {
+        'camps':camps
+    }
+    return HttpResponse(template.render(context, request))	
