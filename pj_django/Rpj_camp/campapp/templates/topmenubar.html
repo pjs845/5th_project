@@ -1,0 +1,55 @@
+    <div id="header-full">
+        <div class="gnb">
+            <ul>
+                {% if request.session.login_ok_user %}
+                <li><a href="mypage" class="login">마이페이지</a></li>
+                <li><a href="/logout" class="login" onclick="isLogout()">로그아웃</a></li>
+                {% else %}
+                <li><a href="/login" class="login" onclick="isLogin()">로그인</a></li>
+                <li><a href="/signup" class="join" onclick="isLogin('join')">회원가입</a></li>
+                {% endif %}
+                <li><a href="/notice">공지사항</a></li>
+                <li><a href="./?c=cs/notice">고객센터</a></li>
+            </ul>
+        </div>
+
+        <div class="header-wrap">
+            <div class="logo">
+                <h1><a href="/"><img src="/static/img/cam.png" alt="4조캠핑"></a></h1>
+            </div>
+
+            <div class="topmenu">
+                <ul>
+                    <li id="topmenu0">
+                    <a href="./">전체</a>
+                </li>
+                            <li id="topmenu1">
+                    <a href="./">메뉴1</a>
+                </li>
+                            <li id="topmenu2">
+                    <a href="./">메뉴2</a>
+                </li>
+                            <li id="topmenu3">
+                    <a href="./">메뉴3</a>
+                </li>
+                
+                <li>
+                    <a href="javascript:;" data-fancybox="" data-type="ajax" data-src="./?m=camping&amp;_ajax=themesearch&amp;fun=&amp;nature=&amp;themecat=&amp;facilities=" onclick="$.fancybox.close( all )">메뉴4</a>
+                </li>
+            
+
+                <li>
+                    <a href="./?c=market">캠핑물건장터</a>
+                    <ul style="display: none;">
+                        <li><a href="./?c=market/sale">팝니다</a></li>
+                        <li><a href="./?c=market/buy">삽니다</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="/board">게 시 판</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
