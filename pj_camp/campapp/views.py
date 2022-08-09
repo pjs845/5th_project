@@ -217,5 +217,63 @@ def search_subpage(request):
 
 
 ########## 글쓰기 페이지 ##########
+from .models import Board #게시판
+
 def write_page(request):
     return render(request, 'write.html')   
+
+def board(request):
+    template = loader.get_template('board.html')
+    board = Board.objects.all().order_by('-id').values()
+    context = {
+		'boards': board, 
+	}
+    return HttpResponse(template.render(context, request))
+
+
+def write_page(request):
+         template = loader.get_template('write.html')
+         return HttpResponse(template.render({}, request))	
+
+def write_ok(request):
+    x = request.POST['writer']
+    y = request.POST['title']
+    z = request.POST['content']
+    nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+    boards =  Board(writer=x, title=y, content=z, rdate=nowDatetime)
+    boards.save()
+    return HttpResponseRedirect(reverse('board'))
+
+def detail(request, id):
+    template = loader.get_template('detail.html')
+    boards = Board.objects.get(id=id) 
+    context = {
+        'boards': boards,  
+    }  
+    return HttpResponse(template.render(context, request))
+
+def update(request, id):
+	template = loader.get_template('update.html')
+	board = Board.objects.get(id=id)
+	context = {
+				'board': board, 
+	}
+	return HttpResponse(template.render(context, request))
+
+def update_ok(request, id):
+    x = request.POST['writer']
+#    y = request.POST['title']
+    z = request.POST['title']
+    p = request.POST['content']
+    board = Board.objects.get(id=id)
+    board.writer = x
+#    board.email = y
+    board.title = z
+    board.content = p
+    board.save()
+    return HttpResponseRedirect(reverse('board'))
+
+def delete(request, id):
+	board = Board.objects.get(id=id)
+	board.delete()
+	return HttpResponseRedirect(reverse('board'))

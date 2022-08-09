@@ -11,32 +11,45 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/notice_style.css' %}">
 </head>
 <body>
     {% include "topmenubar.html" %}   
     <!-- 미들 -->
-
-    <table class="table table-hover">
-        <thead>
-            <center class="board-middle">
-                <h1>Community Board</h1>
-                <font color='gray' size='4' face='hanna'>
-            <hr width='1400' size='2' color='gray' noshade>
-                <TABLE border='2' width='1100' height='45' align='center' noshade>
-                    <TR size='2' align='center' noshade bgcolor='AliceBlue'>
-                        <th bgcolor='AliceBlue' width='30'>no</th>
-                        <th color='gray' width='670'>subject</th>
-                        <th color='gray' width='200'>camplace</th>
-                        <th color='gray' width='100'>writer</th>
-                    </TR>
-                    
-                </TABLE>
-                
-            </center>
-            
-        </thead>
-    </table>
-                
+    <center class="board-middle">
+        <h1>게시판</h1>
+        <font color='gray' size='4' face='hanna'>
+    <hr width='1400' size='2' color='gray' noshade>  
+    </center>
+    <section class="board">
+    
+        <!-- board list area -->
+          <div id="board-list">
+              <div class="container">
+                  <table class="board-table">
+                      <thead>
+                      <tr>
+                          <th scope="col" class="th-num">번호</th>
+                          <th scope="col" class="th-title">제목</th>
+                          <th scope="col" class="th-writer">작성자</th>
+                          <th scope="col" class="th-date">등록일</th>
+                          <th scope="col" class="th-date">조회수</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {% include "board_paging.html" %}   
+                      </tbody>
+                  </table>
+                  <nav aria-label="Page navigation example">		
+                    <ul id="dyn_ul" class="pagination" style="justify-content: center;">
+                    </ul>
+                  </nav>
+              </div>
+          </div>
+          <div align="center">				
+            <button type="button" class="btn btn-sm btn-primary" id="btnSave" onclick = "location.href = '/board/write'">글쓰기</button>						
+        </div>
+      </section>          
     <!-- 미들 끝 -->
     {% include "footermenubar.html" %}
 </body>

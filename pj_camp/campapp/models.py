@@ -37,10 +37,17 @@ class Notice(models.Model):
     writer = models.CharField(max_length=200)
     subject = models.TextField(null=True)
     content = models.TextField()
-    count = models.IntegerField()
+    count = models.IntegerField(default=0)
     upload_files = models.FileField(upload_to=get_file_path, null=True, blank=True, verbose_name='파일')
     photo = models.ImageField(upload_to=date_upload_to, blank=True, null=True)
     top_fixed = models.BooleanField(default=False)
+    rdate = models.DateTimeField()
+    
+class Board(models.Model):
+    writer = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    hits = models.IntegerField(default=0)
     rdate = models.DateTimeField()
     
     

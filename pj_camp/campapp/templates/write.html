@@ -1,9 +1,9 @@
+{% include "logincheck.html" %}
 <!doctype html>
 <html lang="ko">
 {% load static %}
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <title>캠핑구</title>
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <!-- JavaScript Bundle with Popper -->
@@ -14,8 +14,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> 
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 <style>
     .summernote_out{
         text-align: center;
@@ -27,14 +28,24 @@
     
 </style>
 <script>	
-    $(document).on('click', '#btnSave', function(e){
-        e.preventDefault();				
-        $("#form").submit();
-    });		
-    $(document).on('click', '#btnList', function(e){
-        e.preventDefault();				
-        location.href="${pageContext.request.contextPath}/board/getBoardList";	
-    });
+    function writeCheck()
+    {
+        var form = document.writeform;
+    
+        if( !form.title.value )
+        {
+            alert( "제목을 적어주세요" );
+            form.title.focus();
+            return false;
+        }
+        if( !form.content.value )
+        {
+            alert( "내용을 적어주세요" );
+            form.content.focus();
+            return false;
+        }
+        form.submit();
+    }
 </script>
 </head>
 <body>
@@ -43,29 +54,29 @@
     <table class="table table-hover">
         <thead>
             <center class="board-middle">
-                <h1>Community Board</h1>
-                <font color='gray' size='4' face='hanna'>
+                <h1>글쓰기</h1>
+                <font color='silver' size='4' face='hanna'>
             <hr width='1400' size='2' color='gray' noshade>           
             </center>
-            <div class="summernote_out">
-                <form name="form" id="form" role="form" method="post" action="${pageContext.request.contextPath}/board/saveBoard">				
-                    <table border="0" width="600" align="center" bordercolor="silver">
-                        <tr>
-                           <td width="30%" align="center"><label for="writer" style="white-space:nowrap;">작성자</label></td>
-                           <td><input type="text" class="form-control" name="writer" id="writer" placeholder="" size="60"></td>
-                        </tr>
-                        <tr>
-                           <td align="center"><label for="subject" style="white-space:nowrap;">제목</label></td>
-                           <td><input type="text" class="form-control" name="subject" id="subject" placeholder="제목을 입력해 주세요" size="60"></td>
-                        </tr>
-                        <tr>
-                            <td width="50" align="center"><label for="content" style="white-space:nowrap;">내용</label></td>
-                           <td>
-                            <div id="summernote"><p ></p></div>
+            <form name="writeform" id="form" role="form" method="post" action="write_ok/">	
+                {% csrf_token %}			
+                <table border="0" width="600" align="center" bordercolor="silver">
+                    <tr>
+                        <td width="30%" align="center"><label for="writer" style="white-space:nowrap;">작성자</label></td>
+                        <td><input type="text" class="form-control" name="writer" id="writer" placeholder="" size="60" style="font-size:24px;"></td>
+                    </tr>
+                    <tr>
+                        <td align="center"><label for="title" style="white-space:nowrap;">제목</label></td>
+                        <td><input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요" size="60" style="font-size:24px;"></td>
+                    </tr>
+                    <tr>
+                        <td width="50" align="center"><label for="content" style="white-space:nowrap;">내용</label></td>
+                        <td>
+                        <div><textarea id="summernote" name="content"></textarea></div>
                         <script>
                             $(document).ready(function() {
                                 $('#summernote').summernote({
-                                    height: 300,                   // set editor height
+                                    height: 600,                 // set editor height
                                     width: 900,                    // set editor width
                                     minHeight: null,             // set minimum height of editor
                                     maxHeight: null,             // set maximum height of editor
@@ -73,20 +84,27 @@
                                     lang: "ko-KR",
                                     // 추가한 글꼴
                                     fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-		                            // 추가한 폰트사이즈
-		                            fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
-
+                                    // 추가한 폰트사이즈
+                                    fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+                                    toolbar: [
+                                            ['font', ['fontname','fontsize','fontsizeunit']],
+                                            ['fontstyle', ['bold','italic','underline','strikethrough','forecolor','backcolor','superscript','subscript','clear']],
+                                            ['style', ['style']],
+                                            ['paragraph', ['paragraph','height','ul','ol']],
+                                            ['insert', ['table','hr','link','picture','video']],
+                                            ['codeview'],
+                                        ]
                                 });
                             });
                         </script>
-                        <div align="center">				
-                            <button type="button" class="btn btn-sm btn-primary" id="btnSave">글쓰기</button>				
-                            <button type="button" class="btn btn-sm btn-primary" id="btnBoard" onclick = "location.href = '/board'">목록</button>			
-                        </div>
-                        </td>
-                        </tr>
-                     </table>											
-                </form>			
+                    <div align="center">				
+                        <button type="button" class="btn btn-sm btn-primary" id="btnSave" OnClick="javascript:writeCheck();">올리기</button>				
+                        <button type="button" class="btn btn-sm btn-primary" id="btnBoard" onclick = "location.href = '/board'">목록</button>			
+                    </div>
+                    </td>
+                    </tr>
+                    </table>											
+            </form>			
         </thead>
     </table>
     <!-- 미들 끝 -->

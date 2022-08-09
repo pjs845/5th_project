@@ -266,6 +266,20 @@
 	z-index: 99;
 	padding-left: 60px;
 	padding-right: 60px;
+	transition-property: background-color;
+	/*변형 완료 1초*/
+	transition-duration: 0.2s;
+	/*빠른 시작 서서히 감속*/
+	transition-timing-function: ease-out;
+}
+
+.header-section:hover {
+	background-color: #58181F;
+	/*변형 완료 1초*/
+	transition-duration: 0.2s;
+	/*빠른 시작 서서히 감속*/
+	transition-timing-function: ease-out;
+	/*opacity: 0.5;*/
 }
 
 .header-section.header-normal {
@@ -276,6 +290,8 @@
 	background: #151515;
 	padding-top: 0;
 }
+
+
 
 .header-section.header-normal .logo {
 	padding: 40px 0;
