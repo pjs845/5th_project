@@ -113,10 +113,7 @@
     		
     		// [for 반복문을 돌려서 tr 데이터 임의로 생성 실시]
     		{% for notice in notices %}
-				var rdate = "{{notice.rdate}}";
-				rdate = rdate.split(" ");
-				rdate = [rdate[0], rdate[1], rdate[2]]
-				rdate = rdate.join(" ")
+				var rdate = "{{notice.rdate|date:'Y년 m월 d일'}}";
 				var jsonObject = {"id":"{{notice.id}}", "subject":"{{notice.subject}}", "writer":"{{notice.writer}}", "rdate": rdate};
 				tableList.push(jsonObject);
 				console.log("{{notice}}");
@@ -351,13 +348,13 @@
     				var subject = jsonObject.subject;
     				var writer = jsonObject.writer;
 					var rdate = jsonObject.rdate;
-					console.log("jsonObject.id: "+ id);
+					console.log("jsonObject.rdate: "+ rdate);
 
     				// 동적으로 리스트 추가
     				var insertTr = ""; // 변수 선언
                     insertTr += "<tr>"; 
     				insertTr += "<td>"+id+"</td>"; 
-    				insertTr += "<th id='th-subject'>";
+    				insertTr += "<th id='th-subject' style='text-align:center;'>";
     				insertTr += "<a href='/notice/content/"+id+"'>"+subject+"</a>";
     				insertTr += "<p>테스트</p>";
 					insertTr += "<td>"+writer+"</td>";
