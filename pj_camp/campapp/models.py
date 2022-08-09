@@ -26,10 +26,10 @@ def date_upload_to(instance, filename):
 
 
 class Member(models.Model):
-    name = models.CharField(max_length=200)
-    email = models.TextField(null=False, unique=True)
-    phone = models.TextField() 
-    password1 = models.TextField()
+    name = models.CharField(max_length=50)
+    email = models.TextField(null=False,unique=True,max_length=60)
+    phone = models.TextField(primary_key=True)
+    password1 = models.TextField(max_length=40)
     rdate = models.DateTimeField()
     udate = models.DateTimeField()
     

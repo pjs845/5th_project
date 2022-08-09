@@ -23,7 +23,18 @@ urlpatterns = [
     path('update/<int:id>', views.update, name='update'),
     path('update/update.do/<int:id>', views.update_ok, name='update.ok'),
     path('delete/<int:id>', views.delete, name='delete'),
-
+    path('login/forgot_password/', views.forgot_password, name='forgot_password'),
+    path('login/forgot_password/forgot_password_ok/', views.forgot_password_ok, name='forgot_password_ok'),
+    path('login/forgot_password/forgot_password_ok/', views.forgot_password_ok, name='forgot_password_ok'),
+    path('mypage', views.mypage, name='mypage'),
+    path('updateinfo', views.updateinfo, name='updateinfo'),
+    path('updateinfo/updateinfo_ok/', views.updateinfo_ok, name='updateinfo_ok'),
+    path('deleteAcount', views.deleteAcount, name='deleteAcount'),
+    path('deleteAcount/deleteAcount_ok/', views.deleteAcount_ok, name='deleteAcount_ok'),
+    path('checkpassword', views.checkpassword, name='checkpassword'),
+    path('checkpassword/checkpassword_ok/', views.checkpassword_ok, name='checkpassword'),
+    path('resetpassword', views.resetpassword, name='resetpassword'),
+    path('resetpassword/resetpassword_ok/', views.resetpassword_ok, name='resetpassword_ok'),
 ]
 
 from django.conf import settings
