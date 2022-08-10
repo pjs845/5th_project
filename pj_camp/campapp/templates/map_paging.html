@@ -124,7 +124,7 @@
     		// [테이블 행 개수에따라 페이징 처리 실시]
     		pageInsert(page);
     	};
-		function sido(search){
+		function sido(search, num){
             // [ajax 통신 >> tableList 테이블 데이터가 리스트에 포함된 경우]
             // pageInsert(page);
 			tableList.length = 0;
@@ -135,14 +135,18 @@
     		}
 
 			var selected = []
-			for (const loc of tableList){
-				if(loc.addr.includes(search)){
-					selected.push(loc);
-					continue;
+			console.log("select.value: " + $('#cate1').val());
+			if ($('#cate1').val()==="전국"){
+				for (const loc of tableList){
+					if(loc.addr.includes("") && loc.name.includes($('#address').val())){
+						selected.push(loc);
+					}
 				}
-				if(loc.name.includes(search)){
-					selected.push(loc);
-					continue;
+			}else{
+				for (const loc of tableList){
+					if(loc.addr.includes($('#cate1').val()) && loc.name.includes($('#address').val())){
+						selected.push(loc);
+					}
 				}
 			}
 			tableList.length = 0;
@@ -405,13 +409,6 @@
 			$('#scrollbox').animate({scrollTop:0},0);	
 			
     	};
-		function map_click(len, lat){
-			$("#map").empty();
-			makeMap(8, len, lat);
-		};
-		function textwrite(a){
-			console.log("a: " + a);
-		}
 
 		//검색한 주소의 정보를 insertAddress 함수로 넘겨준다.
 		function searchAddressToCoordinate(markerinfo) {
@@ -476,12 +473,12 @@
 		$('#address').on('keydown', function(e) {
 			var keyCode = e.which;
 			if (keyCode === 13) { // Enter Key
-				sido($('#address').val());
+				sido($('#address').val(), -1);
 			}
 		});
 		$('#submit').on('click', function(e) {
 			e.preventDefault();
-			sido($('#address').val());
+			sido($('#address').val(), -1);
 		});
 		function getClickHandler(map, markers, infoWindows) {
 		
