@@ -25,6 +25,8 @@
     <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"> -->
     <!-- <script src="https://netdna.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
 
+	<!-- map.js 함수 호출용 -->
+	
     <script>
         
     </script>
@@ -83,12 +85,12 @@
     	};
 
 
-
+		
 
     	/* [테이블 리스트 전역 변수 선언 실시] */
     	const tableList = []; // tableInsert 함수에서 for문을 돌면서 삽입 실시
-    	const pageList = 5; // 한개의 페이지에 보여질 목록 개수
-    	const pageMax = 10; // 최대 생성될 페이지 개수 (페이지를 더보려면 이전, 다음 버튼 클릭해야함)    	
+    	const pageList = 10; // 한개의 페이지에 보여질 목록 개수
+    	const pageMax = 5; // 최대 생성될 페이지 개수 (페이지를 더보려면 이전, 다음 버튼 클릭해야함)    	
     	var idx = 0; //idx 값 확인 후 동적 페이지 전환 및 데이터 표시
     	var page = 1; //생성 시작할 페이지 번호
 
@@ -122,6 +124,34 @@
     		// [테이블 행 개수에따라 페이징 처리 실시]
     		pageInsert(page);
     	};
+		function sido(search){
+            // [ajax 통신 >> tableList 테이블 데이터가 리스트에 포함된 경우]
+            // pageInsert(page);
+			tableList.length = 0;
+			for (const camp of {{camps|safe}}){
+    			// JSON 형식으로 리스트에 추가 실시
+    			var jsonObject = {"name":String(camp["name"]), "addr":String(camp["addr"])};
+    			tableList.push(jsonObject);
+    		}
+
+			var selected = []
+			for (const loc of tableList){
+				if(loc.addr.includes(search)){
+					selected.push(loc);
+					continue;
+				}
+				if(loc.name.includes(search)){
+					selected.push(loc);
+					continue;
+				}
+			}
+			tableList.length = 0;
+			for (const loc of selected){
+				tableList.push(loc);
+			}
+            // [테이블 행 개수에따라 페이징 처리 실시]
+            pageInsert(1);
+        };
 
     	/* [페이징 처리 이벤트 수행 함수] */
     	function pageInsert(value){
@@ -279,12 +309,12 @@
     			insertEND = insertEND + "Next";
     			insertEND = insertEND + "</a></li>";
     			$("#dyn_ul").append(insertEND); //jquery append 사용해 동적으로 추가 실시
+				$('#scrollbox').animate({scrollTop:0},0);
     		}
 
 
     		// [페이징 완료 후 >> tr 개수 전체 삭제 >> 페이징 개수에 맞게 다시 표시 실시]
-    		$("#dyn_tbody").empty(); //tbody tr 전체 삭제 실시
-
+    		$("#map_tbody").empty(); //tbody tr 전체 삭제 실시
 
     		// [새롭게 페이지 목록 리스트 처리 실시]
     		newPage(currentpg, pageCount);
@@ -299,17 +329,15 @@
 
     		// [새롭게 테이블 tbody tr 데이터 생성 실시]
     		if(pageCurrent == -1){ // 이전 페이지
-    			$("#dyn_tbody").empty(); //tbody tr 전체 삭제 실시
+    			$("#map_tbody").empty(); //tbody tr 전체 삭제 실시
 
     			// [새롭게 페이징 처리 실시]
     			var newIdx = page - pageMax;
-                
-
     			// [테이블 데이터에 따라 페이징 처리 실시]
     			pageInsert(newIdx); //표시될 페이지 번호 전송
     		} 
     		else if(pageCurrent == 0){ // 다음 페이지
-    			$("#dyn_tbody").empty(); //tbody tr 전체 삭제 실시
+    			$("#map_tbody").empty(); //tbody tr 전체 삭제 실시
 
     			// [새롭게 페이징 처리 실시]
     			var newIdx = page + pageMax;
@@ -318,14 +346,15 @@
     			pageInsert(newIdx); //표시될 페이지 번호 전송
     		}
     		else { // 일반 테이블 목록 리스트 갱신
-    			$("#dyn_tbody").empty(); //tbody tr 전체 삭제 실시
+    			$("#map_tbody").empty(); //tbody tr 전체 삭제 실시
 
     			// 저장된 idx 에서 페이지 수를 곱해서 새로운 idx 지정
     			// [1페이지 클릭 >> (1*5) -5 = 0 시작]
     			// [2페이지 클릭 >> (2*5) -5 = 5 시작]
     			idx = (pageCurrent * pageList) - pageList;
-    			
     			var checkCount = 1;
+				$("#map").empty();
+				var map = selectMapList(8, 37.3595704, 127.105399);
     			for(var i=idx; i<tableList.length; i++){ //반복문을 수행하면서 tbody에 tr데이터 삽입 실시
     				if(checkCount > pageList){ //한페이지에 표시될 목록을 초과한 경우
                         $("#pg_wrap").empty();	
@@ -346,31 +375,196 @@
     				var jsonObject = JSON.parse(JSON.stringify(tableList[i])); //각 배열에 있는 jsonObject 참조
     				var name = jsonObject.name;
     				var addr = jsonObject.addr;
+					// 지도 마커 내용
+					var infoWindow = new naver.maps.InfoWindow({
+						content: '<div style="width:200px;text-align:center;padding:10px;"><b>' + name + '</b><br> - '+addr+' - </div>'
+					});
+					var markerinfo = [addr, name];
     				// 동적으로 리스트 추가
     				var insertTr = ""; // 변수 선언
-                    insertTr += "<li onclick=\"camp_click('"+addr+"')\">"; 
+                    //insertTr += "<li id='camp_location"+i+"'>"; 
+					insertTr += "<li id='camp_location' onclick=\"searchAddressToCoordinate(\'"+markerinfo+"\')\">"; 
+					//$("#camp_location"+i).click({address: addr, infowindows: infoWindow}, searchAddressToCoordinate);
     				insertTr += "<div>"; 
     				insertTr += "<h2 class='camp_tt'>"+name+"</h2>";
     				insertTr += "<ul class='camp_info'>";
-    				insertTr += "<li class='addr' id='address'>'"+addr+"'</li>";
+    				insertTr += "<li class='addr' id='address'>"+addr+"</li>";
 					insertTr += "</ul>";
                     insertTr += "</div>";
                     insertTr += "</li>";
     				insertTr += "<hr size='2' color='gray' noshade>";             
     				// jquery append 사용해 동적으로 추가 실시
-                    console.log("html:" + insertTr);
+                    console.log("addr:" + addr);
     				$("#map_tbody").append(insertTr);
+					// 지도 마커 표시
+					searchAddressToMarker(String(addr), map, infoWindow);
     				// 카운트 횟수 증가 		
     				checkCount ++;
     			}					
-    		}	
+    		}
+			$('#scrollbox').animate({scrollTop:0},0);	
+			
     	};
-    	
+		function map_click(len, lat){
+			$("#map").empty();
+			makeMap(8, len, lat);
+		};
+		function textwrite(a){
+			console.log("a: " + a);
+		}
+
+		//검색한 주소의 정보를 insertAddress 함수로 넘겨준다.
+		function searchAddressToCoordinate(markerinfo) {
+			markerinfo = markerinfo.split(",");
+			console.log("markerinfo[0]: " + markerinfo[0]);
+			naver.maps.Service.geocode({
+				query: markerinfo[0]
+			}, function(status, response) {
+				if (status === naver.maps.Service.Status.ERROR) {
+					return alert('Something Wrong!');
+				}
+				if (response.v2.meta.totalCount === 0) {
+					return alert('주소가 이상함');
+				}
+				var htmlAddresses = [],
+					item = response.v2.addresses[0],
+					point = new naver.maps.Point(item.x, item.y);
+				if (item.roadAddress) {
+					htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
+				}
+				if (item.jibunAddress) {
+					htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
+				}
+				if (item.englishAddress) {
+					htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
+				}
+
+				//insertAddress(item.roadAddress, item.x, item.y);
+				console.log("markerinfo[1]: " + markerinfo[1]);
+				makeMap(item.x, item.y,markerinfo[0], markerinfo[1]);
+			});
+		}
+
+		function searchAddressToMarker(address, map, infowindows) {
+			naver.maps.Service.geocode({
+				query: address
+			}, function(status, response) {
+				if (status === naver.maps.Service.Status.ERROR) {
+					return alert('Something Wrong!');
+				}
+				if (response.v2.meta.totalCount === 0) {
+					return;
+				}
+				var htmlAddresses = [],
+					item = response.v2.addresses[0],
+					point = new naver.maps.Point(item.x, item.y);
+				if (item.roadAddress) {
+					htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
+				}
+				if (item.jibunAddress) {
+					htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
+				}
+				if (item.englishAddress) {
+					htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
+				}
+				insertMarker(map, item.x, item.y, infowindows);
+			});
+		}
+
+		// 주소 검색의 이벤트
+
+		$('#address').on('keydown', function(e) {
+			var keyCode = e.which;
+			if (keyCode === 13) { // Enter Key
+				sido($('#address').val());
+			}
+		});
+		$('#submit').on('click', function(e) {
+			e.preventDefault();
+			sido($('#address').val());
+		});
+		function getClickHandler(map, markers, infoWindows) {
+		
+            return function(e) {  // 마커를 클릭하는 부분
+                var marker = markers, // 클릭한 마커의 시퀀스로 찾는다.
+                    infoWindow = infoWindows; // 클릭한 마커의 시퀀스로 찾는다
+
+                if (infoWindow.getMap()) {
+                    infoWindow.close();
+                } else {
+                    infoWindow.open(map, marker); // 표출
+                }
+    		}
+    	}
+
+		function insertMarker(map, latitude, longitude, infoWindows){
+			var marker = new naver.maps.Marker({
+				map: map,
+				position: new naver.maps.LatLng(longitude, latitude),
+				
+			});
+			naver.maps.Event.addListener(marker, 'click', getClickHandler(map, marker, infoWindows));
+		}
+			
+		//검색정보를 테이블로 작성해주고, 지도에 마커를 찍어준다.
+		function insertAddress(latitude, longitude) {	
+			var map = new naver.maps.Map('map', {
+				center: new naver.maps.LatLng(longitude, latitude),
+				zoom: 14
+			});
+			var marker = new naver.maps.Marker({
+				map: map,
+				position: new naver.maps.LatLng(longitude, latitude),
+			});
+		}
+
+		//지도를 그려주는 함수
+		function selectMapList(z, len, lat) {
+			var map = new naver.maps.Map('map', {
+				center: new naver.maps.LatLng(len, lat),
+				zoom: z,
+				zoomControl: true,
+				zoomControlOptions: { //줌 컨트롤의 옵션
+					position: naver.maps.Position.TOP_RIGHT
+				}
+			});
+			map.setOptions("tileTransition", false);
+			return map;
+		}
+		//지도 초기화
+		function makeMap(latitude, longitude, addr, name) {
+			$("#map").empty();
+			var map = new naver.maps.Map('map', {
+				center: new naver.maps.LatLng(longitude, latitude),
+				zoom: 14
+			});
+			var marker = new naver.maps.Marker({
+				map: map,
+				position: new naver.maps.LatLng(longitude, latitude),
+			});
+			var infoWindow = new naver.maps.InfoWindow({
+				content: '<div style="width:200px;text-align:center;padding:10px;"><b>' + name + '</b><br> - '+addr+' - </div>'
+			});
+			insertMarker(map, latitude, longitude, infoWindow);
+			console.log("end");
+		}
+
+
+		// 지도를 이동하게 해주는 함수
+		function moveMap(len, lat, map) {
+			var mapOptions = {
+					center: new naver.maps.LatLng(len, lat),
+					zoom: 15,
+					mapTypeControl: true
+				};
+			var map = new naver.maps.Map('map', mapOptions);
+			var marker = new naver.maps.Marker({
+				position: new naver.maps.LatLng(len, lat),
+				map: map
+			});
+		}
     </script>
-
 </head>
-
-
 <body>
 	<!-- 테이블 속성 정의 -->
         <tbody id="map_tbody" >
