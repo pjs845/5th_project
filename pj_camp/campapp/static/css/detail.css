@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OTWelcomeBA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeBA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LeferiPoint-WhiteObliqueA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteObliqueA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/*  폰트  */
+
+#dyn_tbody .comment {
+    margin-left:10px;
+}
+
+#dyn_tbody .comment .date{
+    font-family: 'LeferiPoint-WhiteObliqueA';
+    font-weight: 400px;
+    font-size:14px;
+}
+
+#dyn_tbody .comment strong{
+    font-family: 'OTWelcomeBA';
+    font-weight: 400px;
+    font-size:18px;
+}
+#dyn_tbody .comment p{
+    font-family: 'GangwonEdu_OTFBoldA';
+    /* font-weight: 400px; */
+    font-size:18px;
+}
+
+.card .card-header{
+    padding:5px 0px 0px 10px;
+}
+
+.card button {
+    background-color: #dfebeb;
+    border-color: #b0d1cf;
+    border-radius: 5px;
+}
+
+.card .card-header strong {
+    font-size: 20px;
+    font-family: 'GangwonEduPowerExtraBoldA';
+}
+
+.card .card-header span {
+    font-size: 14px;
+    font-family: 'OTWelcomeRA';
+    line-height:30px;
+}

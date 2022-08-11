@@ -26,7 +26,7 @@
             {% comment %} <div class="btn_sido hand">지역별<i class="fa fa-angle-down" aria-hidden="true"></i></div> {% endcomment %}
             <form action="search_subpage/" method="post">
                 {% csrf_token %}
-            <div class="search-box">
+            <div class="search-box">  
                 <input type="text" class="search-input" name="camp_name" placeholder="캠핑장 or 지역검색">
                 <button type="submit" class="search-btn" >
                   <i class="fas fa-search"></i>
@@ -100,7 +100,7 @@
                           </nav>
                     <div class="fl selectsido">
                         <select name="cate1" id="cate1" class="searchSelect" onchange="sido(this.options[this.selectedIndex].value,this.options[this.selectedIndex].id)">
-                            <option value="전국" selected="" id="00">전국<i class="fa-solid fa-square-caret-down"></i></option>
+                            <option value="전국" selected="" id="00">전국</option>
                                                     <option value="서울" id="01">
                                 서울						</option>
                                                     <option value="경기" id="02">

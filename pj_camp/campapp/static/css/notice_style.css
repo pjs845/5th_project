@@ -1,5 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
+
+
+/****** font ******/
+
+@font-face {
+  font-family: 'SF_HambakSnow';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MICEGothic Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GangwonEduPowerExtraBoldA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OTWelcomeRA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+/* ********************** */
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -56,8 +86,8 @@ section.notice {
 .board-table {
   font-size: 13px;
   width: 100%;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
 }
 
 .board-table a {
@@ -66,26 +96,39 @@ section.notice {
   line-height: 1.4;
   word-break: break-all;
   vertical-align: middle;
+  font-family: 'MICEGothic Bold';
+  font-size:15px;
 }
 .board-table a:hover {
   text-decoration: underline;
 }
 .board-table th {
   text-align: center;
+  font-size:18px;
 }
 
 .board-table .th-num {
   width: 100px;
   text-align: center;
+  font-family: 'GangwonEduPowerExtraBoldA';
 }
-
+#dyn_tbody td{
+  font-size: 14px;
+}
+.board-table .th-title {
+  width: 500px;
+  text-align: center;
+  font-family: 'GangwonEduPowerExtraBoldA';
+}
 .board-table .th-writer {
   width: 150px;
   text-align: center;
+  font-family: 'GangwonEduPowerExtraBoldA';
 }
 
 .board-table .th-date {
   width: 150px;
+  font-family: 'GangwonEduPowerExtraBoldA';
 }
 
 .board-table #dyn_tbody #th-subject{
@@ -99,11 +142,12 @@ section.notice {
 .board-table tbody td {
   border-top: 1px solid #e7e7e7;
   text-align: center;
+  font-family: 'OTWelcomeRA';
 }
 
 .board-table tbody th {
   padding-left: 28px;
-  padding-right: 14px;
+  padding-right: 11px;
   border-top: 1px solid #e7e7e7;
   text-align: left;
 }
