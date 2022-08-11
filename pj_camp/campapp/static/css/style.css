@@ -76,13 +76,17 @@ video {width: 100%; opacity:0.9;}
 /* a {text-decoration: none;color: #000;} */
 .searchSelect {font-family: "noto sans kr";outline: none;min-width: 70px;min-width: 70px\9;height: 36px;padding: 4px 40px 6px 15px;padding: 8px 9px 3px 15px\9;border: 1px solid #bbb;
     font-size: 14px;font-size: 12px\9;line-height: 19px;color: #444;appearance: none;-webkit-appearance: none;-moz-appearance: none;-o-appearance: none;background:right center no-repeat;
-    background: none\9;background-color: #fff;font-weight: 700;border: 3px solid rgb(44, 40, 40);}
+    background: none\9;background-color: #fff;font-weight: 700;border: 3px solid rgb(44, 40, 40);background-image: url("../img/select1.png")}
 
 
 /* 게 시 판 페이지 CSS */
 /* 가운데 본문 영역 */
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 table {font-size:25px;}
-.board-middle h1 {font-size:60px; padding-top:200px; padding-bottom:30px;}
+.board-middle {width: 100%;  margin: 10px auto;position: relative;margin-top:200px; margin-bottom: 110px; }
+.board-image img {width: 100%; height:auto; vertical-align: middle; padding: 0px 21% 0px 21%; opacity: 0.8;}
+.board-text {font-family: 'Do Hyeon', sans-serif; font-weight: 300px; padding: 5px 10px;text-align: center;position: absolute;top: 50%;left: 50%;font-size:40px;color:rgb(40 40 64 / 87%);transform: translate( -50%, -50% );}
+.board-text p {font-family: 'Do Hyeon', sans-serif;}
 
 
 /* 광고 및 등록 페이지 CSS */

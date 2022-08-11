@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -17,8 +19,9 @@ section.notice {
 }
 
 #board-search .search-window {
-  padding: 15px 0;
-  background-color: #f9f7f9;
+  padding: 15px 0px 0px 0px ;
+  background-color: #ffffff;
+  float:right;
 }
 #board-search .search-window .search-wrap {
   position: relative;
@@ -33,6 +36,7 @@ section.notice {
   font-size: 14px;
   padding: 7px 14px;
   border: 1px solid #ccc;
+  border-radius: 10px;
 }
 #board-search .search-window .search-wrap input:focus {
   border-color: #333;
@@ -107,7 +111,6 @@ section.notice {
 .board-table tbody th p{
   display: none;
 }
-
 .btn {
   display: inline-block;
   padding: 0 30px;
@@ -160,13 +163,7 @@ section.notice {
 
 /* reset */
 
-* {
-  list-style: none;
-  text-decoration: none;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
 .clearfix:after {
   content: '';
   display: block;
@@ -184,3 +181,4 @@ section.notice {
   width: 1px;
   height: 1px;
 }
+

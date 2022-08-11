@@ -26,8 +26,7 @@
             {% comment %} <div class="btn_sido hand">지역별<i class="fa fa-angle-down" aria-hidden="true"></i></div> {% endcomment %}
             <form action="search_subpage/" method="post">
                 {% csrf_token %}
-            <div class="search-box">
-                
+            <div class="search-box">  
                 <input type="text" class="search-input" name="camp_name" placeholder="캠핑장 or 지역검색">
                 <button type="submit" class="search-btn" >
                   <i class="fas fa-search"></i>

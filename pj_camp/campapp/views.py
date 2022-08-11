@@ -1,3 +1,4 @@
+from pyexpat.errors import messages
 from types import MemberDescriptorType
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -11,7 +12,7 @@ from bs4 import BeautifulSoup
 from django.contrib import auth
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from .models import Notice
+from .models import Notice, Board_Comment
 from .models import Member #회원정보 
 
 # DB 불러오기
@@ -35,7 +36,6 @@ for x in docs:
 ########## 메인 페이지  ##########
 def main_page(request):
     template = loader.get_template("pj_main.html")
-    print(camps)
     context = {
         'camps':camps,
     }
@@ -155,7 +155,6 @@ def search(request):
     q = request.POST.get('q', "") 
     if q:
         notice = notice.filter(Q (subject__contains=q) | Q (content__contains=q))
-        print("notice: ")
         return render(request, 'notice.html', {'notices' : notice, 'q' : q})
     
     else:
@@ -216,7 +215,6 @@ def search_subpage(request):
     search_camp.clear()
     return HttpResponse(template.render(context, request))
 
-
 ########## 글쓰기 페이지 ##########
 from .models import Board #게시판
 
@@ -225,52 +223,67 @@ def write_page(request):
 
 def board(request):
     template = loader.get_template('board.html')
-    board = Board.objects.all().order_by('-id').values()
+    board = Board.objects.all().order_by('-id')
     context = {
 		'boards': board, 
 	}
     return HttpResponse(template.render(context, request))
 
-
 def write_page(request):
-    template = loader.get_template('write.html')
-    return HttpResponse(template.render({}, request))	
+         template = loader.get_template('write.html')
+         try:
+            member = Member.objects.get(email=request.session['login_ok_user'])
+         except KeyError:
+            member = None 
+         context = {
+            'member':member    
+         }
+         return HttpResponse(template.render(context, request))	
 
 def write_ok(request):
-    x = request.POST['writer']
+    try:
+            member = Member.objects.get(email=request.session['login_ok_user'])
+    except KeyError:
+            member = None 
     y = request.POST['title']
     z = request.POST['content']
     nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
-    boards =  Board(writer=x, title=y, content=z, rdate=nowDatetime)
+    boards =  Board(writer=member, title=y, content=z, rdate=nowDatetime)
     boards.save()
     return HttpResponseRedirect(reverse('board'))
 
 def detail(request, id):
     template = loader.get_template('detail.html')
     boards = Board.objects.get(id=id) 
+    comment = Board_Comment.objects.all()
+    comment = comment.filter(Q (post=boards))
+    try:
+        member = Member.objects.get(email=request.session['login_ok_user'])
+    except KeyError:
+        member = None
+    context = {
+        'boards': boards,  
+        'members': member,
+        'comments': comment,
+    }  
+    return HttpResponse(template.render(context, request))
+
+def update(request, id):
+    template = loader.get_template('update.html')
+    boards = Board.objects.get(id=id) 
     context = {
         'boards': boards,  
     }  
     return HttpResponse(template.render(context, request))
 
-def update(request, id):
-	template = loader.get_template('update.html')
-	board = Board.objects.get(id=id)
-	context = {
-				'board': board, 
-	}
-	return HttpResponse(template.render(context, request))
-
 def update_ok(request, id):
     x = request.POST['writer']
-#    y = request.POST['title']
-    z = request.POST['title']
-    p = request.POST['content']
+    y = request.POST['title']
+    z = request.POST['content']
     board = Board.objects.get(id=id)
     board.writer = x
-#    board.email = y
-    board.title = z
-    board.content = p
+    board.title = y
+    board.content = z
     board.save()
     return HttpResponseRedirect(reverse('board'))
 
@@ -279,6 +292,35 @@ def delete(request, id):
 	board.delete()
 	return HttpResponseRedirect(reverse('board'))
 
+from django.urls import reverse_lazy
+######### 댓글 달기 ##############
+def comment_write(request, phone, id):
+    comment = get_object_or_404(Board, pk=id)
+    print("comment:", comment)
+    contents = request.POST.get('content')
+    member = Member.objects.get(phone=phone)
+    print("member:", member)
+    nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+    
+    if not content:
+        messages.info(request, '댓글을 입력해주세요')
+        return HttpResponseRedirect(reverse('detail', args=[id]))
+    Board_Comment.objects.create(post=comment, writer=member, content=contents, rdate=nowDatetime)
+    return HttpResponseRedirect(reverse('detail', args=[id]))
+
+########## 비밀번호 찿기 ##########
+def forgot_password(request):
+   temlate = loader.get_template('forgot_password.html')
+   return HttpResponse(temlate.render({}, request))
+
+def forgot_password_ok(request):
+   if request.method == "POST":
+      name = request.POST['name']
+      email = request.POST['email']
+      member =  Member.objects.get(name = name, email = email)
+      print(member.password1)
+      #esle->try,cacth로 dosenotexist 
+      return HttpResponseRedirect(reverse('main'))
 
 
 ########### 지도 페이지 ################
@@ -288,3 +330,77 @@ def map(request):
         'camps':camps
     }
     return HttpResponse(template.render(context, request))	
+
+
+########## 마이페이지 ##########    
+def mypage(request):
+    temlate = loader.get_template('mypage.html')
+    member = Member.objects.get(email = request.session['login_ok_user'])
+    context = {
+    'member' : member 
+    }   
+    return HttpResponse(temlate.render(context, request))    
+########## 회원정보수정 ##########   
+def updateinfo(request):
+    template = loader.get_template("updateinfo.html")
+    member = Member.objects.get(email = request.session['login_ok_user'])
+    context = {
+      'member': member  
+    }
+    return HttpResponse(template.render(context, request))
+
+def updateinfo_ok(request):
+    name = request.POST['name']
+    email = request.POST['email']
+    phone = request.POST['phone']
+    member = Member.objects.get(email = request.session['login_ok_user'])   
+    member.name = name
+    member.email = email
+    member.phone = phone
+    nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+    member.rdate = nowDatetime
+    member.save()
+    request.session['login_ok_user'] = member.email
+    return HttpResponseRedirect(reverse('main'))   
+########## 기존비밀번호확인 ##########
+def checkpassword (request) : 
+    temlate = loader.get_template("checkpassword.html")
+    return HttpResponse(temlate.render({}, request))
+
+def checkpassword_ok(request):
+   if request.method == "POST":
+    password1 = request.POST['password1']
+    password2 = request.POST['password2']
+    member = Member.objects.get(email = request.session['login_ok_user'])
+    if password1 == password2 :
+        return HttpResponseRedirect(reverse('resetpassword'))
+########## 비밀번호 변경 ##########
+def resetpassword (request):
+    temlate = loader.get_template("resetpassword.html")
+    return HttpResponse(temlate.render({}, request))
+def resetpassword_ok(request):
+    password1 = request.POST['password1']
+    password2 = request.POST['password2']
+    if password1 == password2 : 
+        member = Member.objects.get(email = request.session['login_ok_user'])   
+        member.password1 = password1
+        nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+        member.rdate = nowDatetime
+        member.save()
+        request.session['login_ok_user'] = member.email
+        return HttpResponseRedirect(reverse('main'))   
+########## 탈퇴(비밀번호확인) ##########
+def deleteAcount(request) : 
+    temlate = loader.get_template("deleteAcount.html")
+    return HttpResponse(temlate.render({}, request))
+def deleteAcount_ok(request):
+   if request.method == "POST":
+    password1 = request.POST['password1']
+    password2 = request.POST['password2']
+    member = Member.objects.get(email = request.session['login_ok_user'])
+    if password1 == password2 :
+        if member.password1 == password1:
+            member.delete()
+            del request.session['login_ok_user']
+            request.session.flush() # 서버측의 해당 user의 session방을 삭제
+        return HttpResponseRedirect(reverse('main'))
