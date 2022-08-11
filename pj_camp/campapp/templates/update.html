@@ -78,21 +78,21 @@
             <hr width='1400' size='2' color='gray' noshade>           
             </center>
             <div class="summernote_out">
-                <form name="writeform" id="form" role="form" method="post" action="update_ok/">	
+                <form name="writeform" id="form" role="form" method="post" action="update_ok/{{boards.id}}">	
                     {% csrf_token %}			
                     <table border="0" width="600" align="center" bordercolor="silver">
                         <tr>
                            <td width="30%" align="center"><label for="writer" style="white-space:nowrap;">작성자</label></td>
-                           <td><input name='writer' class="form-control" readonly value={{boards.writer}}></td>
+                           <td><input name='writer' class="form-control" readonly value={{boards.writer.name}}></td>
                         </tr>
                         <tr>
                            <td align="center"><label for="title" style="white-space:nowrap;">제목</label></td>
-                           <td><input type="text" class="form-control" name="title" id="title" {{boards.title}}></td>
+                           <td><input type="text" class="form-control" name="title" id="title" value="{{boards.title}}"></td>
                         </tr>
                         <tr>
                             <td width="50" align="center"><label for="content" style="white-space:nowrap;">내용</label></td>
                            <td>
-                            <div><textarea id="summernote" name="content">{{boards.Content}}</textarea></div>
+                            <div><textarea id="summernote" name="content">{{boards.content}}</textarea></div>
                         
                         <div align="center">				
                             <button type="submit" class="btn btn-sm btn-primary" id="btnSave" OnClick="javascript:writeCheck();">수정</button>				

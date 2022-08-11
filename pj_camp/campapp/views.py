@@ -1,5 +1,6 @@
 from pyexpat.errors import messages
 from types import MemberDescriptorType
+from urllib import response
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -252,21 +253,44 @@ def write_ok(request):
     boards.save()
     return HttpResponseRedirect(reverse('board'))
 
+from datetime import date, datetime, timedelta
+
 def detail(request, id):
-    template = loader.get_template('detail.html')
-    boards = Board.objects.get(id=id) 
-    comment = Board_Comment.objects.all()
-    comment = comment.filter(Q (post=boards))
     try:
         member = Member.objects.get(email=request.session['login_ok_user'])
     except KeyError:
         member = None
+    login_session = request.session.get('login_ok_user', '')
+    
+    board = Board.objects.get(id=id)
+    comment = Board_Comment.objects.all()
+    comment = comment.filter(Q (post=board))
+    if board.writer.email == login_session:
+        board_writer = True
+    else:
+        board_writer = False
     context = {
-        'boards': boards,  
+        'boards': board,  
         'members': member,
         'comments': comment,
+        'login_session': login_session,
+        'board_writer': board_writer,
     }  
-    return HttpResponse(template.render(context, request))
+    response = render(request, 'detail.html', context)
+    
+    expire_date, now = datetime.now(), datetime.now()
+    expire_date += timedelta(days=1)
+    expire_date = expire_date.replace(hour=0, minute=0, microsecond=0)
+    expire_date -= now
+    max_age = expire_date.total_seconds()
+    
+    cookie_value = request.COOKIES.get('counts', '_')
+    if f'_{id}_' not in cookie_value:
+        cookie_value += f'{id}_'
+        response.set_cookie('counts', value=cookie_value, max_age=max_age, httponly=True)
+        board.hits += 1
+        board.save()
+    return response
 
 def update(request, id):
     template = loader.get_template('update.html')
@@ -277,11 +301,9 @@ def update(request, id):
     return HttpResponse(template.render(context, request))
 
 def update_ok(request, id):
-    x = request.POST['writer']
     y = request.POST['title']
     z = request.POST['content']
     board = Board.objects.get(id=id)
-    board.writer = x
     board.title = y
     board.content = z
     board.save()
@@ -291,6 +313,12 @@ def delete(request, id):
 	board = Board.objects.get(id=id)
 	board.delete()
 	return HttpResponseRedirect(reverse('board'))
+
+########## 댓글 삭제 ################
+def delete_comment(request, num, id):
+    comment = Board_Comment.objects.get(id=id)
+    comment.delete()
+    return redirect('../../../'+str(num))
 
 from django.urls import reverse_lazy
 ######### 댓글 달기 ##############
