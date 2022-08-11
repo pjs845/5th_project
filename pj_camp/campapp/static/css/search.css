@@ -54,7 +54,7 @@ body {
   .search-input:focus,
   .search-input:not(:placeholder-shown) {
     width: 260px;
-    padding: 0 30px;
+    margin-left:35px;
   }
   
   .search-box:hover > .search-input {

@@ -266,7 +266,20 @@
 	z-index: 99;
 	padding-left: 60px;
 	padding-right: 60px;
-}
+	transition-property: background-color;
+	/*변형 완료 1초*/
+	transition-duration: 0.2s;
+	/*빠른 시작 서서히 감속*/
+	transition-timing-function: ease-out;
+ }
+ 
+ .header-section:hover {
+	background-color: #000000;
+	/*변형 완료 1초*/
+	transition-duration: 0.2s;
+	/*빠른 시작 서서히 감속*/
+	transition-timing-function: ease-out;
+ }
 
 .header-section.header-normal {
 	position: relative;
@@ -279,6 +292,8 @@
 
 .header-section.header-normal .logo {
 	padding: 40px 0;
+	margin-bottom:50px;
+	padding-bottom: 50px;
 }
 
 .header-section.header-normal .nav-menu .mainmenu ul li a {
@@ -311,6 +326,10 @@
 
 .logo a {
 	display: inline-block;
+}
+
+.logo img {
+	margin-bottom:50px;
 }
 
 .nav-menu {
