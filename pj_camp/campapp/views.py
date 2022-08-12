@@ -21,11 +21,8 @@ mgClient = mongo_client.MongoClient(url)
 db = mgClient["CampMain"]
 col = db["Camp"]
 docs = col.find()
-a = []
 camps = []
 for x in docs:
-    #a.append(x.get('_id'))
-    
     id = x.get('_id')
     a.append(x)
     soup = BeautifulSoup(x['이미지'])
@@ -450,6 +447,7 @@ def checkpassword_ok(request):
     member = Member.objects.get(email = request.session['login_ok_user'])
     if password1 == password2 :
         return HttpResponseRedirect(reverse('resetpassword'))
+    
 ########## 비밀번호 변경 ##########
 def resetpassword (request):
     temlate = loader.get_template("resetpassword.html")
@@ -465,6 +463,7 @@ def resetpassword_ok(request):
         member.save()
         request.session['login_ok_user'] = member.email
         return HttpResponseRedirect(reverse('main'))   
+    
 ########## 탈퇴(비밀번호확인) ##########
 def deleteAcount(request) : 
     temlate = loader.get_template("deleteAcount.html")

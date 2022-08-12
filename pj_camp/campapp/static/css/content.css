@@ -17,16 +17,22 @@
     font-weight: normal;
     font-style: normal;
   }
+  @font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /* ************** */
 div.tstyle_view { margin-bottom: 1rem; margin-left:21%; margin-right:21% }
 div.tstyle_view div.title { color: #333; font-size: 35px; font-weight: bold; padding: 1.2rem 0; text-align: center; font-family: 'Cafe24Ssurround';}
-div.tstyle_view ul.head { padding: .9rem 0; border-top: 2px solid #ddd; border-bottom: 2px solid #ddd; text-align: center; background-color: #f8f9fa;font-family: 'OTWelcomeRA'; font-size:18px; }
+div.tstyle_view ul.head { padding: .9rem 0; border-top: 2px solid #ddd; border-bottom: 2px solid #ddd; text-align: center; background-color: #f8f9fa;font-family: 'OTWelcomeRA'; font-size:18px; line-height: 10px;}
 div.tstyle_view ul.head li { display: inline-block; }
 div.tstyle_view ul.head li ~ li { position: relative; padding-left: .5rem; margin-left: .4rem; }
 div.tstyle_view ul.head li ~ li::before { content: ''; display: block; background-color: #ddd; width: 1px; height: 0.6rem; position: absolute; left: 0; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); }
 div.tstyle_view ul.head li strong { color: #000; font-weight: normal; padding-right: 5px; }
 div.tstyle_view ul.head li span { color: #777; }
-div.tstyle_view div.tb_contents { border-bottom: 1px solid #d3d8dd; word-break: keep-all; }
+div.tstyle_view div.tb_contents { border-bottom: 1px solid #d3d8dd; word-break: keep-all; font-family: 'GangwonEdu_OTFBoldA';font-size: 18px;}
 
 /*첨부파일*/
 div.tstyle_view .add_file_list { display: table; width: 100%; border-bottom: 1px solid #d3d8dd; }
