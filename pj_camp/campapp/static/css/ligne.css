@@ -1,5 +1,13 @@
+/*  */
 
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
+/*  */
 h1.gradient {
     font-size: 72px;
     background: -webkit-linear-gradient(rgba(3, 169, 244, 1), rgba(13, 71, 161, 1));
@@ -391,6 +399,7 @@ button, input, optgroup, select, textarea {
 .panel .cbody label {
     font-weight: bold;
     line-height:46px;
+    font-family: 'InfinitySans-RegularA1';
 }
 
 .panel.small {
@@ -1698,8 +1707,8 @@ a.undecoration {
 .list_update {background-color: #f1efeb;}
 .camp_info01 {padding-left: 100px;}
 .camp_info01 .ffi {display:inline-block;}
-.container .searching-title {padding-top:200px;padding-bottom: 50px}
-.container .searching-title2 {padding-bottom: 30px}
+.container .searching-title {padding-top:200px;padding-bottom: 50px; font-family: 'InfinitySans-RegularA1';}
+.container .searching-title2 {padding-bottom: 30px; font-family: 'InfinitySans-RegularA1';}
 .container .imge {width:60%; border: 2px solid rgb(110, 108, 112);padding: 7px 7px;display:inline-block;vertical-align:top;}
 .container .tit {padding-top: 30px;}
 .container a {margin-top: 30px; font-size:20px;color:#3a365e; font-weight:bold; text-decoration-line: none;font-family: 'Kanit', sans-serif;}

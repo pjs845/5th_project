@@ -96,7 +96,7 @@
     	const pageMax = 5; // 최대 생성될 페이지 개수 (페이지를 더보려면 이전, 다음 버튼 클릭해야함)    	
     	var idx = 0; //idx 값 확인 후 동적 페이지 전환 및 데이터 표시
     	var page = 1; //생성 시작할 페이지 번호
-
+		
 
 
 
@@ -114,7 +114,7 @@
     		// [for 반복문을 돌려서 tr 데이터 임의로 생성 실시]
     		for (const camp of {{camps|safe}}){
     			// JSON 형식으로 리스트에 추가 실시
-    			var jsonObject = {"name":String(camp["name"]), "addr":String(camp["addr"]), "img":String(camp["img"])};
+    			var jsonObject = {"id":String(camp["id"]),"name":String(camp["name"]), "addr":String(camp["addr"]), "img":String(camp["img"])};
                 //var jsonObject = {"name":String(key)};
     			tableList.push(jsonObject);
     		}
@@ -149,7 +149,7 @@
 			tableList.length = 0;
 			for (const camp of {{camps|safe}}){
     			// JSON 형식으로 리스트에 추가 실시
-    			var jsonObject = {"name":String(camp["name"]), "addr":String(camp["addr"]), "img":String(camp["img"])};
+    			var jsonObject = {"id":String(camp["id"]), "name":String(camp["name"]), "addr":String(camp["addr"]), "img":String(camp["img"])};
     			tableList.push(jsonObject);
     		}
 
@@ -399,10 +399,11 @@
     				var name = jsonObject.name;
     				var addr = jsonObject.addr;
     				var img = jsonObject.img;
-
+					var idid = jsonObject.id;
+					
     				// 동적으로 리스트 추가
     				var insertTr = ""; // 변수 선언
-                    insertTr += "<div class='items hand' style=\"cursor: pointer;\"  onclick=\"location.href=\'"+img+"\'\">"; 
+                    insertTr += "<div class='items hand' style=\"cursor: pointer;\"  onclick=\"location.href=\'"+idid+"\'\">"; 
     				insertTr += "<div class='photo'>"; 
     				insertTr += "<img src="+img+" alt="+name+" class='tm' width='150' height='150'>";
     				insertTr += "<span class='distance'></span>";

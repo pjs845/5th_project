@@ -114,9 +114,9 @@
     		// [for 반복문을 돌려서 tr 데이터 임의로 생성 실시]
     		{% for board in boards %}
 				var rdate = "{{board.rdate|date:'Y년 m월 d일'}}";
-				var jsonObject = {"id":"{{board.id}}", "subject":"{{board.title}}", "writer":"{{board.writer}}", "rdate": rdate, "hit":"{{board.hits}}"};
+				var jsonObject = {"id":"{{board.id}}", "subject":"{{board.title}}", "writer":"{{board.writer.name}}", "rdate": rdate, "hit":"{{board.hits}}", "comments":"{{board.comments.count}}"};
 				tableList.push(jsonObject);
-				console.log("{{board}}");
+				console.log("{{board.comments.count}}");
 			{% endfor %}
             console.log("tablelist:" + tableList.length);
     		// [테이블 행 개수에따라 페이징 처리 실시]
@@ -349,13 +349,18 @@
     				var writer = jsonObject.writer;
 					var rdate = jsonObject.rdate;
                     var hit = jsonObject.hit;
+					var comments = jsonObject.comments;
 					console.log("jsonObject.rdate: "+ rdate);
 
     				// 동적으로 리스트 추가
     				var insertTr = ""; // 변수 선언
                     insertTr += "<tr>"; 
     				insertTr += "<td align='center'>"+id+"</td>"; 
-    				insertTr += "<td><a href=\"write/"+id+"\">"+subject+"</a></td>";
+					if (comments>0){
+						insertTr += "<td><a href=\"/board/detail/"+id+"\">"+subject+"</a>["+comments+"]</td>";
+					}else{
+						insertTr += "<td><a href=\"/board/detail/"+id+"\">"+subject+"</a></td>";
+					}		
     				insertTr += "<td>"+writer+"</td>";
     				insertTr += "<td>"+rdate+"</td>";
 					insertTr += "<td>"+hit+"</td>";

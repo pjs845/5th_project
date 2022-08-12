@@ -33,10 +33,44 @@
 /*----------------------------------------*/
 
 
+@font-face {
+    font-family: 'MICEGothic Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OTWelcomeBA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeBA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'WandohopeB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/WandohopeB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
-
-
-/*---------------------
+@font-face {
+    font-family: 'ChusaLove';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/ChusaLove.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'EF_MACHO';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/EF_MACHO.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+-----------------
   Helper CSS
 -----------------------*/
 
@@ -271,16 +305,16 @@
 	transition-duration: 0.2s;
 	/*빠른 시작 서서히 감속*/
 	transition-timing-function: ease-out;
-}
 
-.header-section:hover {
-	background-color: #58181F;
+ }
+ 
+ .header-section:hover {
+	background-color: #000000;
 	/*변형 완료 1초*/
 	transition-duration: 0.2s;
 	/*빠른 시작 서서히 감속*/
 	transition-timing-function: ease-out;
-	/*opacity: 0.5;*/
-}
+ }
 
 .header-section.header-normal {
 	position: relative;
@@ -291,10 +325,10 @@
 	padding-top: 0;
 }
 
-
-
 .header-section.header-normal .logo {
 	padding: 40px 0;
+	margin-bottom:50px;
+	padding-bottom: 50px;
 }
 
 .header-section.header-normal .nav-menu .mainmenu ul li a {
@@ -329,12 +363,21 @@
 	display: inline-block;
 }
 
+.logo img {
+	margin:0px;
+	border-style: none;
+	padding-bottom:35px;
+}
+
 .nav-menu {
 	text-align: center;
 }
 
 .nav-menu .mainmenu {
 	display: inline-block;
+}
+.nav-menu .mainmenu .middle_menu{
+	margin-top:5px;
 }
 
 .nav-menu .mainmenu ul li {
@@ -358,7 +401,7 @@
 
 .nav-menu .mainmenu ul li a {
 	color: #ffffff;
-	font-size: 18px;
+	font-size: 20px;
 	text-transform: uppercase;
 	font-weight: bold;
 	line-height: 28px;
@@ -370,6 +413,7 @@
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
+	font-family: 'InfinitySans-RegularA1';
 }
 
 .nav-menu .mainmenu ul li a:after {
@@ -444,12 +488,13 @@
 	color: #ffffff;
 	margin-left: 20px;
     font-weight: bold;
-    /* border-radius: 14px;
-    border: 2px solid rgb(13, 238, 6);; */
+	text-decoration: none;
+	font-family: 'InfinitySans-RegularA1';
 }
 
 .top-social a:hover {
 	color: #08b93d;
+	text-decoration: none;
 }
 
 .slicknav_menu {
