@@ -24,6 +24,7 @@ urlpatterns = [
     path('board/detail/<int:id>', views.detail, name='detail'),
     path('board/detail/<int:id>/update/', views.update, name='update'),
     path('board/detail/<int:id>/update/update_ok/', views.update_ok, name='update.ok'),
+    path('board/search/', views.board_search, name='board_search'),
     path('update/<int:id>', views.update, name='update'),
     path('update/update_ok/<int:id>', views.update_ok, name='update_ok'),
     path('comment_write/<str:phone>/<int:id>', views.comment_write, name="comment_write"),

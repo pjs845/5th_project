@@ -268,6 +268,7 @@ def write_page(request):
 def board(request):
     template = loader.get_template('board.html')
     board = Board.objects.all().order_by('-id')
+    
     context = {
 		'boards': board, 
 	}
@@ -353,9 +354,45 @@ def update_ok(request, id):
     return HttpResponseRedirect(reverse('board'))
 
 def delete(request, id):
-	board = Board.objects.get(id=id)
-	board.delete()
-	return HttpResponseRedirect(reverse('board'))
+    board = Board.objects.get(id=id)
+    print(board)
+    comment = Board_Comment.objects.all()
+    comment = comment.filter(Q (post__id__contains=id))
+    board.delete()
+    comment.delete()
+    return HttpResponseRedirect(reverse('board'))
+
+########## 게시판 검색 ##################
+from django.db.models import Q
+
+def board_search(request):
+    board = Board.objects.all().order_by('-id')
+    comment = Board_Comment.objects.all()
+    f = request.POST.get('cate1', "")
+    q = request.POST.get('q', "") 
+    print("f:", f)
+    print("q:", q)
+    if q:
+        if f == "all":
+            board = board.filter(Q (title__contains=q) | Q (content__contains=q))    
+        elif f == "title":
+            board = board.filter(Q (title__contains=q))    
+        elif f == "content":
+            board = board.filter(Q (content__contains=q))    
+        elif f == "writer":
+            board = board.filter(Q (writer__name__contains=q))  
+            print(board)  
+        elif f == "comment":
+            comment = comment.filter(Q (content__contains=q)).values_list('post')
+            print(comment)
+            board = board.filter(Q (id__in=comment))
+            print(board)
+        return render(request, 'board.html', {'boards' : board, 'q' : q})
+    
+    else:
+        return render(request, 'board.html')
+
+
 
 ########## 댓글 삭제 ################
 def delete_comment(request, num, id):

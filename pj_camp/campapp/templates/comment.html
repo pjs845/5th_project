@@ -114,7 +114,7 @@
     		console.log("{{comments}}");
     		// [for 반복문을 돌려서 tr 데이터 임의로 생성 실시]
     		{% for comment in comments %}
-				var jsonObject = {"writer":"{{comment.writer.name}}", "content":"{{comment.content}}", "rdate":"{{comment.rdate}}"};
+				var jsonObject = {"id":"{{comment.id}}", "email":"{{comment.writer.email}}", "writer":"{{comment.writer.name}}", "content":"{{comment.content}}", "rdate":"{{comment.rdate}}"};
 				tableList.push(jsonObject);
                 console.log("{{comment}}");
 			{% endfor %}
@@ -333,15 +333,22 @@
                         }
                         // json 데이터 파싱 실시
                         var jsonObject = JSON.parse(JSON.stringify(tableList[i])); //각 배열에 있는 jsonObject 참조
+                        var id = jsonObject.id;
+                        var email = jsonObject.email;
                         var writer = jsonObject.writer;
                         var content = jsonObject.content;
                         var rdate = jsonObject.rdate;
+                        var num =  document.location.href;
                         console.log("jsonObject.rdate: "+ rdate);
     
                         // 동적으로 리스트 추가
                         var insertTr = ""; // 변수 선언
                         insertTr += "<div class='comment'>"; 
-                        insertTr += "<div class='date'>"+rdate+"</div>"; 
+						if(email === "{{login_session}}"){
+							insertTr += "<div class='date'>"+rdate+"<a onclick=\"return confirm(\'정말로삭제하시겠습니까?\');\" href=\'"+num+"/comment/delete/"+id+"\' style='float:right;'>삭제</a></div>"; 
+						}else{
+							insertTr += "<div class='date'>"+rdate+"</div>"; 
+						}
                         insertTr += "<strong>작성자: "+writer+"</strong>";
                         insertTr += "<p>내용: "+content+"</p>";
                         insertTr += "</div>";
