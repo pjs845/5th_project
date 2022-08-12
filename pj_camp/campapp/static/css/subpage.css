@@ -51,7 +51,7 @@ div.box1{
     width: 1020px;
     height: 500px;
     float: left;
-    border-radius: 50px 50px 50px 50px ;
+    border-radius: 15px 15px 15px 15px ;
     
 }
 img.imim{
@@ -65,7 +65,7 @@ img.imim{
     width: 1020px;
     height: 500px;
     float: left;
-    border-radius: 50px 50px 50px 50px ;
+    border-radius: 15px 15px 15px 15px ;
     
 }
 div.box2{
@@ -134,7 +134,7 @@ div.boxin4{
 
 }
 div.content1{
-    
+    font-size:20px;
     padding-right: 30px;
     margin-bottom: 50px;
     
@@ -143,8 +143,13 @@ div.campsite{
     margin-bottom: 10px;
     font-size:30px;
     font-style: normal;
-    font-family: 'Noto Sans KR', sans-serif;
-    
+}
+/* 캠프 이름스타일 */
+div.campname{
+    font-weight: bold;
+    font-size:35px;
+    font-family: 'GmarketSansMedium';
+
 }
 div.address{
     margin-left: 5px;
@@ -153,8 +158,9 @@ div.address{
     font-style: normal;
     font-family: 'Noto Sans KR', sans-serif;
     text-decoration:underline ;
-    
+    color:black;
 }
+
 div.facility{
     margin-bottom: 30px;
   
@@ -191,6 +197,27 @@ div.pet{
     font-style: normal;
 }
 
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RIDIBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     margin: 0;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";

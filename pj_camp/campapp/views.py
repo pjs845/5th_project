@@ -39,7 +39,10 @@ def sub_page(request,id):
     template = loader.get_template("template1.html")
     sub = col.find({"_id":id})
     for x in sub:
-        k = col_sub.find({"주소":x.get("지역이름").strip()})
+        addr = x.get("지역이름").strip()
+        name = x["캠핑장이름"][x["캠핑장이름"].find("]")+1:]
+        print(name)
+        k = col_sub.find({"주소":addr})
         a11 = x.get("이미지")
         soup = BeautifulSoup(a11)
         imgs = soup.find_all("img")
@@ -67,12 +70,22 @@ def sub_page(request,id):
                         animal = '반려동물 동반 가능'
                 except:
                     animal = None
-                   
+                if '소화기' in x1['안전시설현황']:
+                    fire = '소화기'
+                else:
+                    fire = None
+                if '화재감지기' in x1['안전시설현황']:
+                    feel = '화재경보기'
+                else:
+                    feel = None
+                print(x1['안전시설현황'])
                 context = {
                     'x1':[x1],
                     'img':y["src"],
-                    'facil':{'facil1':facil1,'facil2':facil2,'facil3':facil3},
-                    'animal':animal
+                    'facil':{'facil1':facil1,'facil2':facil2,'facil3':facil3,'소화기':fire,'화재경보기':feel},
+                    'animal':animal,
+                    'camps':camps,
+                    'addr':[{'addr1':addr,'name':name}],
                 }
 
     return HttpResponse(template.render(context, request))
@@ -97,7 +110,6 @@ def paging(request):
 ########## login 페이지 ##########
 def login(request):
    return render(request,'login.html')
-
 ########## login_ok(조건) ##########
 def login_ok(request):
     email = request.POST.get('email',None) 
@@ -121,34 +133,31 @@ def login_ok(request):
         'result': result, 
     }
     return HttpResponse(temlate.render(context, request))
-
 ########## logout ##########
 def logout(request):
     if request.session.get('login_ok_user'):
         del request.session['login_ok_user']
-        #request.session.clear() # 서버측의 해당 user의 session방을 초기화
-        #request.session.flush() # 서버측의 해당 user의 session방을 삭제
+        request.session.clear() 
+        request.session.flush() # 서버측의 해당 user의 session방을 삭제
     return redirect("../")
+
 
 ########## signup 페이지 ##########
 def signup(request):
-    template = loader.get_template("signup.html")
-    context = {
-    }
-    return HttpResponse(template.render(context, request))
+    return render(request,'signup.html')
 
 ########## signup_ok (조건) ##########
 def signup_ok(request):
-    if request.method == "POST":
-        if request.POST['password1'] == request.POST['password2']:
-            a = request.POST['name']
-            b = request.POST['email']
-            c = request.POST['phone']
-            d = request.POST['password1']
-            nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S') 
-            member = Member(name = a, email = b, phone = c, password1 = d, rdate=nowDatetime, udate=nowDatetime)
-            member.save()
-            return HttpResponseRedirect(reverse('main'))
+   if request.method == "POST":
+      if request.POST['password1'] == request.POST['password2'] :
+         a = request.POST['name']
+         b = request.POST['email']
+         c = request.POST['phone']
+         d = request.POST['password1']
+         nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S') 
+         member = Member(name = a, email = b, phone = c, password1 = d, rdate=nowDatetime, udate=nowDatetime)
+         member.save()
+         return HttpResponseRedirect(reverse('login'))
 
 ########## 서브 페이지 ##########
 def board_page(request): #게시판으로 가는 페이지 연동
@@ -457,20 +466,17 @@ def updateinfo(request):
       'member': member  
     }
     return HttpResponse(template.render(context, request))
-
 def updateinfo_ok(request):
-    name = request.POST['name']
     email = request.POST['email']
     phone = request.POST['phone']
     member = Member.objects.get(email = request.session['login_ok_user'])   
-    member.name = name
     member.email = email
     member.phone = phone
     nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
     member.rdate = nowDatetime
     member.save()
     request.session['login_ok_user'] = member.email
-    return HttpResponseRedirect(reverse('main'))   
+    return HttpResponseRedirect(reverse('mypage'))   
 ########## 기존비밀번호확인 ##########
 def checkpassword (request) : 
     temlate = loader.get_template("checkpassword.html")
@@ -483,7 +489,6 @@ def checkpassword_ok(request):
     member = Member.objects.get(email = request.session['login_ok_user'])
     if password1 == password2 :
         return HttpResponseRedirect(reverse('resetpassword'))
-    
 ########## 비밀번호 변경 ##########
 def resetpassword (request):
     temlate = loader.get_template("resetpassword.html")
@@ -499,7 +504,6 @@ def resetpassword_ok(request):
         member.save()
         request.session['login_ok_user'] = member.email
         return HttpResponseRedirect(reverse('main'))   
-    
 ########## 탈퇴(비밀번호확인) ##########
 def deleteAcount(request) : 
     temlate = loader.get_template("deleteAcount.html")
