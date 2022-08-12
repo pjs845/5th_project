@@ -1,7 +1,0 @@
-{% if not request.session.login_ok_user %}
-    <script language="javascript">
-        alert("로그인해주세요")
-        location.href="/board";
-        history.back();
-    </script>
-{% endif %}
