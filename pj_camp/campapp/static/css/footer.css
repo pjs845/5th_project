@@ -1,0 +1,167 @@
+/* .footer_section {background-color: rgb(238, 169, 104);} */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+@font-face {
+    font-family: 'HSGyeoulNoonkott20';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/HSGyeoulNoonkott20.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.footer_section {
+    width: 100%;
+    float: left;
+    background-color: #4c4a4a;
+    height: auto;
+}
+
+.footer_logo {
+    width: 100%;
+    text-align: center;
+    margin-top:30px;
+    margin-bottom:20px;
+}
+
+.input_bt {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+}
+
+.mail_bt {
+    width: 100%;
+    float: left;
+    font-size: 18px;
+    color: #fff;
+    background-color: transparent;
+    padding: 15px 30px 5px 40px;
+    height: 60px;
+    border: 0px;
+    font-family: 'InfinitySans-RegularA1';
+}
+
+input.mail_bt::placeholder {
+    color: #fff;
+}
+
+.subscribe_bt {
+    width: 30%;
+    float: right;
+    font-size: 16px;
+    color: #f26522;
+    background-color: transparent;
+    padding: 15px 0px 5px 15px;
+    border-radius: 30px;
+    border: 0px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.subscribe_bt a {
+    color: #f26522;
+    text-decoration: none;
+}
+
+.subscribe_bt a:hover {
+    color: #ffffff;
+}
+
+.footer_menu {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-decoration: none;
+    font-family: 'InfinitySans-RegularA1';
+}
+
+.footer_menu ul {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    list-style: none;
+}
+
+.footer_menu li {
+    float: left;
+    font-size: 16px;
+    color: #f1f1f1;
+    padding: 20px 10px 0px 10px;
+    
+}
+
+.footer_menu li a {
+    color: #f1f1f1;
+    text-decoration: none;
+}
+
+.footer_menu li a:hover {
+    color: #f26522;
+}
+
+.location_main {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 30px;
+    text-align: center;
+    font-family: 'InfinitySans-RegularA1';
+}
+
+.location_main {
+    float: left;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 30px 30px 20px 30px;
+}
+
+.location_main a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.location_main a:hover {
+    color: #f26522;
+}
+
+
+/* copyright section start */
+
+.copyright_section {
+    width: 100%;
+    float: left;
+    background-color: #4c4a4a;
+    height: auto;
+}
+
+.copyright_text {
+    width: 100%;
+    float: left;
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+    margin: 20px 0px;
+    font-family: 'InfinitySans-RegularA1';
+}
+
+.copyright_text a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.copyright_text a:hover {
+    color: #f26522;
+}
+
+.margin_top90 {
+    margin-top: 90px;
+}
+
+
+/* copyright section end */

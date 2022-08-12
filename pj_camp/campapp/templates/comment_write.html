@@ -1,0 +1,15 @@
+<br><br>
+{% if request.session.login_ok_user%}
+<form action="{% url 'comment_write' phone=members.phone id=boards.id  %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="content" placeholder="댓글을 입력해주세요" style="width:450px;border-radius:5px;margin-left: 5px;">
+    <input type="submit" value="등록" style="border-radius:5px;background-color:#b8dcff;border-color:#bcb1e3;">
+</form>
+{% else %}
+<form>
+    {% csrf_token %}
+    <input type="text" name="content" readonly value="댓글 작성은 회원만 가능합니다." style="width:450px;border-radius:5px;margin-left: 5px;">
+    <input type="submit" value="등록" style="border-radius:5px;background-color:#b8dcff;border-color:#bcb1e3;">
+</form>
+{% endif %}
+<hr>

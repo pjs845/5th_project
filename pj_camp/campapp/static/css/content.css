@@ -1,0 +1,57 @@
+/*  */
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* ************** */
+div.tstyle_view { margin-bottom: 1rem; margin-left:21%; margin-right:21% }
+div.tstyle_view div.title { color: #333; font-size: 35px; font-weight: bold; padding: 1.2rem 0; text-align: center; font-family: 'Cafe24Ssurround';}
+div.tstyle_view ul.head { padding: .9rem 0; border-top: 2px solid #ddd; border-bottom: 2px solid #ddd; text-align: center; background-color: #f8f9fa;font-family: 'OTWelcomeRA'; font-size:18px; line-height: 10px;}
+div.tstyle_view ul.head li { display: inline-block; }
+div.tstyle_view ul.head li ~ li { position: relative; padding-left: .5rem; margin-left: .4rem; }
+div.tstyle_view ul.head li ~ li::before { content: ''; display: block; background-color: #ddd; width: 1px; height: 0.6rem; position: absolute; left: 0; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); }
+div.tstyle_view ul.head li strong { color: #000; font-weight: normal; padding-right: 5px; }
+div.tstyle_view ul.head li span { color: #777; }
+div.tstyle_view div.tb_contents { border-bottom: 1px solid #d3d8dd; word-break: keep-all; font-family: 'GangwonEdu_OTFBoldA';font-size: 18px;}
+
+/*첨부파일*/
+div.tstyle_view .add_file_list { display: table; width: 100%; border-bottom: 1px solid #d3d8dd; }
+div.tstyle_view .add_file_list .title { display: table-cell; width: 10%; color: #333; padding: 1rem; }
+div.tstyle_view .add_file_list .add_file { display: table-cell; padding: 1rem 0; }
+ul.add_file li::after { content: ""; clear: both; display: table; }
+ul.add_file li::before { display: none; }
+ul.add_file li .file_down { margin-left: .3rem; }
+ul.add_file li .file_down:hover { color: #126fb4; }
+ul.add_file li .fileSize { color: #999; font-size: .8em; margin-left: .2rem; }
+ul.add_file li .link { float: right; }
+ul.add_file li .link .btn-line { font-size: .7rem; width: auto; min-width: 5rem; padding: .1rem 1.1rem .1rem .5rem; }
+ul.add_file li .link .btn-line i { right: .35rem; }
+ul.add_file li ~ li { margin-top: .5rem; }
+ul.add_file li .xi-close-circle { display: inline-block; vertical-align: middle; font-size: 1rem; color: #888; margin-left: .5rem; -webkit-transition: all .25s; transition: all .25s; }
+ul.add_file li .xi-close-circle:hover { color: #126fb4; }
+ul.add_file li .input_file { display: inline-block; padding: .3rem .6rem; border: 1px solid #999; -webkit-transition: all .25s; transition: all .25s; }
+ul.add_file li .input_file:hover { background-color: #999; color: #fff; }
+
+.col-12 {
+    text-align:right;
+}

@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+@font-face {
+    font-family: 'ulsanjunggu';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ulsanjunggu.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: '양진체';
+    src: url('https://cdn.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ImcreSoojin';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.3/ImcreSoojin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+/* 바 디 */
+body {margin:0;}
+
+/* 회원가입 / 로그인  */
+
+/* 상단 메뉴바 로고  */
+
+/* 첫 번째 패널 */
+
+.main_fullbg-wrap {width: 100%; overflow: hidden;margin: 0px auto; position: relative;}
+video {width: 100%;}
+.main_fullbg-wrap .main-search #bot {font-family: 'InfinitySans-RegularA1'; position:absolute; text-align:center; top: 30%; width: 100%; font-size:55px;color:#fff;font-weight:400;}
+
+/* 첫 번째 패널 끝 */
+
+/* 두 번째 패널*/
+
+.middle-pannel1 {padding:0;width:100%;height:100%;position:relative;background:#e7cd9c;min-height:900px;}
+
+
+.middle-pannel2 {margin:0px;padding:0px;}
+
+/* 왼쪽 지도  */
+.pannel2-1 {width:27%; height:750px; background-color:rgb(255, 255, 255);float:left;}
+.pannel2-1 .pannel2-1-1 h2{margin-top:150px;margin:40px;padding:0;font-size:30px;text-align:center;letter-spacing:-0.03em;font-weight:bold;font-family: '양진체';}
+.pannel2-1 .pannel2-1-1 h2 span {color:#6419c5}
+.pannel2-1 .pannel2-1-2 {margin:30px;padding:0;font-size:30px;text-align:center;letter-spacing:-0.03em;font-family: 'ImcreSoojin';}
+.pannel2-1 .pannel2-1-3 {margin-top:70px;text-align:center;}
+
+/* 오른쪽 캠핑 정보 */
+
+.pannel2-2 {width:73%; height:750px; background-color:rgb(255, 255, 255);float:left;}
+
+.pannel2-2 .pannel2-2-1 {width:82%;margin:auto;}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 {display:inline-block;width:82%;margin-bottom:20px;margin-top:45px;}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 > ul li {padding:0 10px}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-3 {font-family: 'GongGothicMedium';background:#43a9e5;color:#fff;height:36px;line-height:36px;font-size:15px;width:66px;text-align:center; border: 1px solid rgb(130 129 211);}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 {border:1px #ccc solid;height:34px;line-height:34px;margin:0 10px;}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 .btn_page {width:34px;height:34px;color:#ccc;text-align:center;font-size:15px;pointer-events: none;}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 .btn_page.on {color:#555;background:#f0f0f0;pointer-events: auto;}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 .btn_page.on:hover {background:#ccc;color:#fff}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .pannel2-2-4 .pagestat {padding:0;width:70px;text-align:center;font-family: 'Pretendard-Regular'; }/**/
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .adq  {font-family: 'Pretendard-Regular';display:inline-block;padding:8px 0 0 0;font-weight:500;font-size:15px;color:#aa0a47;font-weight: bold;}
+.pannel2-2 .pannel2-2-1 .pannel2-2-2 .adq:hover {border-color:#f52390}
+
+.pannel2-2-1 .pannel2-2-2 .selectsido .vtext {font-size:14px;font-weight:500;color:#3EA9CD;display:inline-block;margin:0 0 0 11px}
+.pannel2-2-1 .pannel2-2-2 .selectsido .vtext > span {font-weight:700;color:rgb(155, 122, 122)}
+.pannel2-2-1 .pannel2-2-2 .selectsido .subselect {display:none}
+
+/* 사진 정보 */
+.pannel2-2 .pannel2-2-1 .camp_right_content:after {content:"";clear:both;display:block;float:none;}
+.pannel2-2 .pannel2-2-1 .items {width:290px;margin:7px 40px 10px 0;float:left;} /* 각 사진 정보 */
+.pannel2-2 .pannel2-2-1 .items.nomargin {margin-right:10px;}
+.pannel2-2 .pannel2-2-1 .items .photo {width:283px;height:168px;position:relative;overflow:hidden;background:#f6f6f6 no-repeat  center center;border-radius: 15px;}
+.pannel2-2 .pannel2-2-1 .items .photo:after {content: '';display: block;width:100%;height:100%;position: absolute;left: 0;right: 0;top: 0;bottom: 0;z-index:0;background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.3) 100%);background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.3) 100%);background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.3) 100%);}
+.pannel2-2 .pannel2-2-1 .items img.tm {transition: transform .2s;width:100%;height:100%}
+.pannel2-2 .pannel2-2-1 .items:hover img.tm {transform: scale(1.15)};
+.pannel2-2 .pannel2-2-1 .items .photo .tm {object-fit:cover;width:283px;transition: transform .2s;}
+.pannel2-2 .pannel2-2-1 .items .photo span.distance {position:absolute;left:0;bottom:0;display:inline-block;background:#000;background:rgba(0,0,0,.1);padding:4px 5px;color:#efe03e;z-index:10;font-size:11px;}
+.pannel2-2 .pannel2-2-1 .items .photo span.cat {position:absolute;right:0;bottom:0;display:inline-block;background:#000;background:rgba(0,0,0,.1);padding:4px 5px;color:#efe03e;z-index:10;font-size:11px;}
+.pannel2-2 .pannel2-2-1 .items .cont {padding-top:7px}
+.pannel2-2 .pannel2-2-1 .items .cont .tt {padding:0;font-size:20px;font-weight:600;margin:5px 0;font-family: 'Pretendard-Regular';}
+.pannel2-2 .pannel2-2-1 .items .cont .mcont {color:#1728c0;font-size:13px;font-weight:400;font-family: 'Pretendard-Regular';}
+
+/* 추가적 */
+.fl {float: left;font-family: 'Pretendard-Regular';}
+
+/* 두 번째 패널 추가 정보 */
+.fr {float: right;}
+/* a {text-decoration: none;color: #000;} */
+.searchSelect {font-family: "noto sans kr";outline: none;min-width: 70px;min-width: 70px\9;height: 36px;padding: 4px 40px 6px 15px;padding: 8px 9px 3px 15px\9;border: 1px solid #bbb;
+    font-size: 14px;font-size: 12px\9;line-height: 19px;color: #444;appearance: none;-webkit-appearance: none;-moz-appearance: none;-o-appearance: none;background:right center no-repeat;
+    background: none\9;background-color: #fff;font-weight: 700;border: 2px solid rgb(44, 40, 40);background-image: url("../img/select1.png")}
+
+
+/* 게 시 판 페이지 CSS */
+/* 가운데 본문 영역 */
+table {font-size:25px;}
+.board-middle {width: 100%;  margin: 10px auto;position: relative;margin-top:200px; margin-bottom: 110px; }
+.board-middle h1{font-family: 'InfinitySans-RegularA1'; }
+.board-image img {width: 100%; height:auto; vertical-align: middle; padding: 0px 21% 0px 21%; opacity: 0.7;}
+.board-text { font-weight: 300px; padding: 5px 10px;text-align: center;position: absolute;top: 50%;left: 50%;font-size:75px;color:rgb(40 40 64 / 87%);transform: translate( -50%, -50% );font-family: 'GangwonEduPowerExtraBoldA';}
+
+
+/* 광고 및 등록 페이지 CSS */
+.ad-main h1{text-align: center; margin:0px; padding-top:200px; padding-bottom: 50px;}
+#joinForm{width: 450px; height:100px; margin: 0 auto;}
+ul.join_box{border: 1px solid #ddd;background-color: #fff;}
+.checkBox,.checkBox>ul{position: relative;}
+.checkBox>ul>li{float: left;}
+.checkBox>ul>li:first-child{width: 85%;padding: 15px;font-weight: 600;color: #888;}
+.checkBox>ul>li:nth-child(2){position: absolute;top: 50%;right: 30px;margin-top: -12px;}
+.checkBox textarea{width: 96%;height: 90px; margin: 0 2%;background-color: #f7f7f7;color: #888; border: none;}
+.footBtwrap{margin-top: 15px;}.footBtwrap>li{float: left;width: 50%;height: 60px;}
+.footBtwrap>li>button{display: block; width: 100%;height: 100%; font-size: 20px;text-align: center;line-height: 60px;}
+.fpmgBt1{background-color: #fff;color:#888}.fpmgBt2{background-color: lightsalmon;color: #fff}
+ul>li{list-style: none}
+
+/* 광고 및 등록 페이지 CSS */
+/* 등록 하는 란 */
+.ad-middle {margin-top: 100px; margin-bottom: 130px; margin-left:400px;width:58%;}
+.ad-middle .first .one-td {font-size:20px; text-align: center;padding-right:50px;}
+.ad-middle .first .two-td a {font-size:18px;border: 2px solid;padding: 4px 7px;}
+.ad-middle .first .two-td a:hover {color:#25a5f0}
+
+.ad-middle .two .three-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .two .input1 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+
+.ad-middle .three .four-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .three .input2 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+
+.ad-middle .four .five-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .four .input3 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+.ad-middle .four .input4 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+#email-check {margin-top: 30px; font-size:21px;}
+
+.ad-middle .five .six-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .five .input5 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+
+.ad-middle .six .seven-td {font-size:20px; text-align: center;padding-right:50px; padding-top:40px;}
+.ad-middle .six .input6 {font-size:18px;border: 2px solid;padding: 4px 7px;margin-top: 40px;}
+
+#callfb {font-size:14px; margin-top: 80px;}
+.ad-middle .td2 ul li {font-size:14px;}
+
+.checkBtn {font-size:18px; border-radius: 40px;padding: 5px 20px; margin-bottom: 100px;}
+
+/* search 페이지 css */
+
