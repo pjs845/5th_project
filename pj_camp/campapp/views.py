@@ -1,3 +1,4 @@
+import re
 from types import MemberDescriptorType
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -13,6 +14,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from .models import Notice
 from .models import Member #회원정보 
+from django.contrib import messages
+
 
 # DB 불러오기
 url = "mongodb://192.168.0.66:27017"
@@ -237,40 +240,28 @@ def login_ok(request):
 def logout(request):
     if request.session.get('login_ok_user'):
         del request.session['login_ok_user']
-        #request.session.clear() # 서버측의 해당 user의 session방을 초기화
-        #request.session.flush() # 서버측의 해당 user의 session방을 삭제
+        request.session.clear() 
+        request.session.flush() # 서버측의 해당 user의 session방을 삭제
     return redirect("../")
+
+
 ########## signup 페이지 ##########
 def signup(request):
-    template = loader.get_template("signup.html")
-    context = {
-    }
-    return HttpResponse(template.render(context, request))
+    return render(request,'signup.html')
+
 ########## signup_ok (조건) ##########
 def signup_ok(request):
-    if request.method == "POST":
-        if request.POST['password1'] == request.POST['password2']:
-            a = request.POST['name']
-            b = request.POST['email']
-            c = request.POST['phone']
-            d = request.POST['password1']
-            nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S') 
-            member = Member(name = a, email = b, phone = c, password1 = d, rdate=nowDatetime, udate=nowDatetime)
-            member.save()
-            return HttpResponseRedirect(reverse('main'))
-########## 비밀번호 찿기 ##########
-def forgot_password(request):
-   temlate = loader.get_template('forgot_password.html')
-   return HttpResponse(temlate.render({}, request))
-
-def forgot_password_ok(request):
    if request.method == "POST":
-      name = request.POST['name']
-      email = request.POST['email']
-      member =  Member.objects.get(name = name, email = email)
-      print(member.password1)
-      #esle->try,cacth로 dosenotexist 
-      return HttpResponseRedirect(reverse('main'))
+      if request.POST['password1'] == request.POST['password2'] :
+         a = request.POST['name']
+         b = request.POST['email']
+         c = request.POST['phone']
+         d = request.POST['password1']
+         nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S') 
+         member = Member(name = a, email = b, phone = c, password1 = d, rdate=nowDatetime, udate=nowDatetime)
+         member.save()
+         return HttpResponseRedirect(reverse('login'))
+
 ########## 마이페이지 ##########    
 def mypage(request):
     temlate = loader.get_template('mypage.html')
@@ -287,20 +278,17 @@ def updateinfo(request):
       'member': member  
     }
     return HttpResponse(template.render(context, request))
-
 def updateinfo_ok(request):
-    name = request.POST['name']
     email = request.POST['email']
     phone = request.POST['phone']
     member = Member.objects.get(email = request.session['login_ok_user'])   
-    member.name = name
     member.email = email
     member.phone = phone
     nowDatetime = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
     member.rdate = nowDatetime
     member.save()
     request.session['login_ok_user'] = member.email
-    return HttpResponseRedirect(reverse('main'))   
+    return HttpResponseRedirect(reverse('mypage'))   
 ########## 기존비밀번호확인 ##########
 def checkpassword (request) : 
     temlate = loader.get_template("checkpassword.html")
@@ -343,5 +331,4 @@ def deleteAcount_ok(request):
             del request.session['login_ok_user']
             request.session.flush() # 서버측의 해당 user의 session방을 삭제
         return HttpResponseRedirect(reverse('main'))
-
 
